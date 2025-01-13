@@ -42,7 +42,7 @@ router.use("/houses", houseRoutes);
 // Routes for leaderboard-related operations
 router.use("/leaderboard", leaderboardRoutes);
 
-// Routes for feedback-related operations
+// Routes for review-related operations
 router.use("/owlPost", owlPostRoutes);
 
 // Routes for quest-related operations

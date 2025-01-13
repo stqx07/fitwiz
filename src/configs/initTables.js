@@ -23,7 +23,7 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
     DROP TABLE IF EXISTS UserCompletion;
     DROP TABLE IF EXISTS Duel;
     DROP TABLE IF EXISTS Vault;
-    DROP TABLE IF EXISTS Feedback;
+    DROP TABLE IF EXISTS Review;
     DROP TABLE IF EXISTS FitnessChallenge;
     DROP TABLE IF EXISTS PotionShop;
     DROP TABLE IF EXISTS SpellShop;
@@ -91,8 +91,8 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
     );
     
     -- Child Tables
-    CREATE TABLE Feedback (
-        feedback_id INT AUTO_INCREMENT PRIMARY KEY,
+    CREATE TABLE Review (
+        review_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,

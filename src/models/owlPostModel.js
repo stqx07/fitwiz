@@ -4,11 +4,11 @@
 const pool = require("../services/db.js");
 
 // ##################################################################
-// DEFINE INSERT OPERATION TO CREATE NEW FEEDBACK (Section B Task 21)
+// DEFINE INSERT OPERATION TO CREATE NEW REVIEW (Section B Task 21)
 // ##################################################################
-module.exports.insertFeedback = (data, callback) => {
+module.exports.insertReview = (data, callback) => {
     const SQLSTATEMENT = `
-        INSERT INTO Feedback (user_id, name, email, comment, rating)
+        INSERT INTO Review (user_id, name, email, comment, rating)
         VALUES (?, ?, ?, ?, ?);
     `;
 
@@ -17,12 +17,12 @@ module.exports.insertFeedback = (data, callback) => {
 };
 
 // ####################################################################
-// DEFINE SELECT OPERATION TO RETRIEVE ALL FEEDBACK (Section B Task 22)
+// DEFINE SELECT OPERATION TO RETRIEVE ALL REVIEW (Section B Task 22)
 // ####################################################################
-module.exports.selectAllFeedback = (callback) => {
+module.exports.selectAllReview = (callback) => {
     const SQLSTATEMENT = `
         SELECT * 
-        FROM Feedback
+        FROM Review
         ORDER BY submitted_at DESC;
     `;
 
@@ -30,12 +30,12 @@ module.exports.selectAllFeedback = (callback) => {
 };
 
 // ####################################################################################
-// DEFINE SELECT OPERATION TO RETRIEVE FEEDBACK FOR A SPECIFIC USER (Section B Task 23)
+// DEFINE SELECT OPERATION TO RETRIEVE REVIEW FOR A SPECIFIC USER (Section B Task 23)
 // ####################################################################################
-module.exports.selectFeedbackByUser = (data, callback) => {
+module.exports.selectReviewByUser = (data, callback) => {
     const SQLSTATEMENT = `
         SELECT *
-        FROM Feedback
+        FROM Review
         WHERE user_id = ?;
     `;
 
@@ -44,56 +44,56 @@ module.exports.selectFeedbackByUser = (data, callback) => {
 };
 
 // #############################################################################
-// DEFINE SELECT OPERATION TO CHECK FEEDBACK EXISTENCE BY ID (Section B Task 24)
+// DEFINE SELECT OPERATION TO CHECK REVIEW EXISTENCE BY ID (Section B Task 24)
 // #############################################################################
-module.exports.checkFeedbackExistence = (data, callback) => {
+module.exports.checkReviewExistence = (data, callback) => {
     const SQLSTATEMENT = `
         SELECT * 
-        FROM Feedback
-        WHERE feedback_id = ?;
+        FROM Review
+        WHERE review_id = ?;
     `;
 
-    const VALUES = [data.feedback_id];
+    const VALUES = [data.review_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 // #######################################################################
-// DEFINE SELECT OPERATION TO CHECK FEEDBACK OWNERSHIP (Section B Task 24)
+// DEFINE SELECT OPERATION TO CHECK REVIEW OWNERSHIP (Section B Task 24)
 // #######################################################################
 module.exports.checkUserOwnership = (data, callback) => {
     const SQLSTATEMENT = `
         SELECT * 
-        FROM Feedback
-        WHERE feedback_id = ? AND user_id = ?;
+        FROM Review
+        WHERE review_id = ? AND user_id = ?;
     `;
 
-    const VALUES = [data.feedback_id, data.user_id];
+    const VALUES = [data.review_id, data.user_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 // #######################################################################
-// DEFINE UPDATE OPERATION TO MODIFY EXISTING FEEDBACK (Section B Task 24)
+// DEFINE UPDATE OPERATION TO MODIFY EXISTING REVIEW (Section B Task 24)
 // #######################################################################
-module.exports.updateFeedbackById = (data, callback) => {
+module.exports.updateReviewById = (data, callback) => {
     const SQLSTATEMENT = `
-        UPDATE Feedback
+        UPDATE Review
         SET name = ?, email = ?, comment = ?, rating = ?
-        WHERE feedback_id = ?;
+        WHERE review_id = ?;
     `;
 
-    const VALUES = [data.name, data.email, data.comment, data.rating, data.feedback_id];
+    const VALUES = [data.name, data.email, data.comment, data.rating, data.review_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 // ####################################################################
-// DEFINE DELETE OPERATION TO DELETE FEEDBACK BY ID (Section B Task 25)
+// DEFINE DELETE OPERATION TO DELETE REVIEW BY ID (Section B Task 25)
 // ####################################################################
-module.exports.deleteFeedbackById = (data, callback) => {
+module.exports.deleteReviewById = (data, callback) => {
     const SQLSTATEMENT = `
-        DELETE FROM Feedback
-        WHERE feedback_id = ?;
+        DELETE FROM Review
+        WHERE review_id = ?;
     `;
 
-    const VALUES = [data.feedback_id];
+    const VALUES = [data.review_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };

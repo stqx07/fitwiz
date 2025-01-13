@@ -14,32 +14,32 @@ const router = express.Router();
 // DEFINE ROUTES
 // ##############################################################
 
-// Section B Task 21 (Submit new feedback)
+// Section B Task 21 (Submit new review)
 router.post("/:userId", 
   userController.checkUserById, // Ensure user exists
-  owlPostController.submitFeedback // Submit feedback
+  owlPostController.submitReview // Submit review
 );
 
-// Section B Task 22 (Retrieve all feedback)
-router.get("/", owlPostController.getAllFeedback);
+// Section B Task 22 (Retrieve all review)
+router.get("/", owlPostController.getAllReview);
 
-// Section B Task 23 (Retrieve feedback for a specific user)
+// Section B Task 23 (Retrieve review for a specific user)
 router.get("/", 
   userController.checkUserById, // Ensure user exists
-  owlPostController.getUserFeedback // Retrieve feedback for the user 
+  owlPostController.getUserReview // Retrieve review for the user 
 );
 
-// Section B Task 24 (Update existing feedback)
+// Section B Task 24 (Update existing review)
 router.put(
   "/:userId",
   userController.checkUserById, // Ensure user exists 
-  owlPostController.checkFeedbackExistence, // Ensure feedback exists
-  owlPostController.checkUserOwnership, // Ensure user owns the feedback
-  owlPostController.updateFeedback // Update feedback
+  owlPostController.checkReviewExistence, // Ensure review exists
+  owlPostController.checkUserOwnership, // Ensure user owns the review
+  owlPostController.updateReview // Update review
 ); 
 
-// Section B Task 25 (Delete feedback)
-router.delete("/:feedbackId", owlPostController.deleteFeedback);
+// Section B Task 25 (Delete review)
+router.delete("/:reviewId", owlPostController.deleteReview);
 
 // ##############################################################
 // EXPORT ROUTER

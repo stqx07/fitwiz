@@ -11,6 +11,10 @@ const houseRoutes = require("./houseRoutes.js");
 const leaderboardRoutes = require("./leaderboardRoutes.js");
 const owlPostRoutes = require("./owlPostRoutes.js");
 const questRoutes = require("./questRoutes.js");
+const jwtMiddleware = require("../middlewares/jwtMiddleware");
+const bcryptMiddleware = require("../middlewares/bcryptMiddleware");
+const userController = require("../controllers/userController.js");
+const verifyController = require("../controllers/verifyController");
 
 // ##############################################################
 // CREATE ROUTER
@@ -20,6 +24,27 @@ const router = express.Router();
 // ##############################################################
 // DEFINE ROUTES
 // ##############################################################
+router.post(
+  "/login",
+  userController.login,
+  bcryptMiddleware.comparePassword,
+  jwtMiddleware.generateToken,
+  jwtMiddleware.sendToken
+);
+
+router.post("/register",
+  userController.checkUsernameOrEmailExist,
+  bcryptMiddleware.hashPassword,
+  userController.register,
+  jwtMiddleware.generateToken,
+  jwtMiddleware.sendToken
+);
+
+router.post(
+    "/jwt/verify",
+    jwtMiddleware.verifyToken,
+    verifyController.showTokenVerified
+  );
 
 // Routes for user-related operations
 router.use("/users", userRoutes);

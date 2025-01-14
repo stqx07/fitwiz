@@ -3,6 +3,108 @@
 // ##############################################################
 const model = require("../models/userModel.js");
 
+// ###################################################
+// CONTROLLER FOR LOGIN
+// ###################################################
+module.exports.login = (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.status(400).json({
+      message: "Username or password not provided!",
+    });
+    return;
+  }
+
+  const data = {
+    username: username,
+    password: password,
+  };
+
+  const callback = (error, results, fields) => {
+    if (error) {
+      console.error("Error login:", error);
+      res.status(500).json(error);
+    } else {
+      if (results.length == 0) {
+        res.status(404).json({
+          message: "User not found!",
+        });
+      } else {
+        console.log(results[0]);
+
+        res.locals.user_id = results[0].user_id;
+        res.locals.hash = results[0].password;
+        res.locals.user = results[0][2];
+        next();
+      }
+    }
+  };
+
+  model.login(data, callback);
+};
+
+// ###################################################
+// CONTROLLER FOR REGISTER
+// ###################################################
+module.exports.register = (req, res, next) => {
+  const data = {
+    username: res.locals.username,
+    email: res.locals.email,
+    password: res.locals.hash,
+  };
+
+  const callback = (error, results, fields) => {
+    if (error) {
+      console.error("Error register:", error);
+      res.status(500).json(error);
+    } else {
+      res.locals.user_id = results.insertId;
+      res.locals.message = `User ${res.locals.username} created successfully.`;
+      next();
+    }
+  };
+
+  model.register(data, callback);
+};
+
+// ###################################################
+// MIDDLEWARE FOR CHECK IF USERNAME OR EMAIL EXISTS
+// ###################################################
+module.exports.checkUsernameOrEmailExist = (req, res, next) => {
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) {
+    res.status(400).json({
+      message: "Missing required data",
+    });
+    return;
+  }
+
+  const data = {
+    username: username,
+    email: email,
+  };
+
+  const callback = (error, results, fields) => {
+    if (error) {
+      console.error("Error checkUsernameOrEmailExist:", error);
+      res.status(500).json(error);
+    } else {
+      if (results.length == 0) {
+        res.locals.username = username;
+        res.locals.email = email;
+        next();
+      } else {
+        res.status(409).json({
+          message: "Username or email already exists",
+        });
+        return;
+      }
+    }
+  };
+
+  model.checkUsernameOrEmailExist(data, callback);
+};
+
 // #########################################################################################################################################
 // DEFINE CONTROLLER FUNCTION TO CHECK IF USERNAME IS A DUPLICATE WHEN REFERENCED AGAINST THE DATABASE (Section A Task 1 + Section A Task 3)
 // #########################################################################################################################################

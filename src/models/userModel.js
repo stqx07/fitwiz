@@ -3,6 +3,48 @@
 // ##############################################################
 const pool = require("../services/db");
 
+// ###################################################
+// LOGIN USER
+// ###################################################
+module.exports.login = (data, callback) => {
+  const SQLSTATEMENT = `
+      SELECT * FROM User
+      WHERE username = ?;
+    `;
+
+  const VALUES = [data.username];
+
+  pool.query(SQLSTATEMENT, VALUES, callback);
+};
+
+// ###################################################
+// REGISTER A NEW USER
+// ###################################################
+module.exports.register = (data, callback) => {
+  const SQLSTATEMENT = `
+      INSERT INTO User (username, email, password)
+      VALUES (?, ?, ?);
+    `;
+
+  const VALUES = [data.username, data.email, data.password];
+
+  pool.query(SQLSTATEMENT, VALUES, callback);
+};
+
+// ###################################################
+// SELECT USER BY USERNAME OR EMAIL
+// ###################################################
+module.exports.checkUsernameOrEmailExist = (data, callback) => {
+  const SQLSTATEMENT = `
+      SELECT * FROM User
+      WHERE username = ? OR email = ?;
+    `;
+
+  const VALUES = [data.username, data.email];
+
+  pool.query(SQLSTATEMENT, VALUES, callback);
+};
+
 // ###############################################################################################
 // DEFINE SELECT OPERATION THAT CHECKS FOR EXISTENCE OF USER (Section A Task 1 + Section A Task 3)
 // ###############################################################################################

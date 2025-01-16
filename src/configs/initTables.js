@@ -198,27 +198,27 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         ('Cherry wood with a dragon core 12½"" and slightly yielding flexibility', 300),
         ('Ebony wood with a dragon core 12"" and hard flexibility', 300);
     
-    INSERT INTO PotionShop (potion_name, potion_description, potion_cost, potion_damage, potion_heal)
+    INSERT INTO PotionShop (potion_id, potion_name, potion_description, potion_cost, potion_damage, potion_heal)
     VALUES
-        ('Cure for Boils', 'The Cure for Boils was a potion which removed boils, such as those produced by the Pimple Jinx.', 64, NULL, 40),
-        ('Essence of Dittany', 'Essence of Dittany was a magical solution made from dried and crushed dittany leaves and salt water (15 drops), that possessed powerful curative properties, which could be used on open shallow wounds for immediate healing and skin regeneration.', 80, NULL, 50), 
-        ('Wiggenweld Potion', 'The Wiggenweld Potion was a healing potion with the power to sterilise and heal minor injuries, and was the antidote to the Sleeping Draught and the Draught of Living Death.', 120, NULL, 75),
-        ('Dizziness Draught', 'Dizziness Draught was a potion that provoked a sensation of lightheadedness and loss of balance on the drinker.', 32, 20, NULL),
-        ('Confusion Concoction', 'The Confusing Concoction, was a potion which caused confusion in the drinker.', 48, 30, NULL),
-        ('Weakness Potion', 'Weakness Potion was a potion whose fumes induced weakness, both physically and mentally. It was yellowish in colour.', 80, 50, NULL);
+        (1, 'Cure for Boils', 'A potion which removes boils, such as those produced by the Pimple Jinx.', 64, NULL, 40),
+        (2, 'Wiggenweld Potion', 'A healing potion with the power to sterilise and heal minor injuries, and was the antidote to the Sleeping Draught and the Draught of Living Death.', 80, NULL, 50),
+        (3, 'Essence of Dittany', 'A magical solution that possesses powerful curative properties, which could be used on open shallow wounds for immediate healing and skin regeneration.', 120, NULL, 75),
+        (4, 'Dizziness Draught', 'A potion that provokes a sensation of lightheadedness and loss of balance on the drinker.', 32, 20, NULL),
+        (5, 'Confusion Concoction', 'A potion which causes confusion in the drinker.', 48, 30, NULL),
+        (6, 'Weakness Potion', 'A potion whose fumes induced weakness, both physically and mentally.', 80, 50, NULL);
     
-    INSERT INTO SpellShop (spell_name, spell_description,spell_cost, spell_damage)
+    INSERT INTO SpellShop (spell_id, spell_name, spell_description,spell_cost, spell_damage)
     VALUES
-        ('Melofors Jinx', 'The Pumpkin-Head Jinx (Melofors), was a jinx that encased the head of the victim in a pumpkin. To outsiders, it appeared that the head of the victim was transformed into a pumpkin.', 38, 15),
-        ('Incendio', 'The Fire-Making Spell (Incendio) was a charm that conjured a jet of flames that could be used to set things alight.', 50, 20),
-        ('Rictusempra', 'The Tickling Charm (Rictusempra) was a charm that caused the target to buckle with laughter, weakening them. It also had at least one other side effect.', 50, 20),
-        ('Brachiabindo', 'Brachiabindo was the incantation of a jinx which could be used to bind an opponent with invisible cords.', 88, 35),
-        ('Impedimenta', 'The Impediment Jinx (Impedimenta), was a jinx that hindered the movement of the target, slowing it down or stopping it in its tracks.', 100, 40),
-        ('Depulso', 'The Banishing Charm (Depulso) was a charm that sent the target away from the caster. It could send a target towards a specific location and worked on both living beings and inanimate objects.', 125, 50),
-        ('Expelliarmus', 'The Disarming Charm (Expelliarmus) was a charm that forced whatever an opponent was holding to fly out of their hand. It was common to see this spell used in duels to make an opponent lose their wand.', 150, 60),
-        ('Immobulus', 'The Freezing Charm (Immobulus) was a charm which immobilised and stopped the actions of the target. With the use of this charm, the movement of living or animated targets was stopped.', 150, 60),
-        ('Flipendo', 'The Knockback Jinx (Flipendo) was a jinx that knocked the target backwards. While prominently used for duelling, it could also be used to push heavy objects.', 175, 70),
-        ('Stupefy', 'The Stunning Spell (Stupefy) was a charm that stunned the target, rendering them unconscious. This charm was exceptionally useful in duelling, as it can quickly end a duel without causing lasting damage.', 175, 70);
+        (1, 'Melofors Jinx', 'A jinx that encases the head of the victim in a pumpkin.', 38, 15),
+        (2, 'Incendio', 'A charm that conjures a jet of flames that can be used to set things alight.', 50, 20),
+        (3, 'Ventus', 'A charm which shoots a jet of strong, spiralling wind from the tip of the wand.', 50, 20),
+        (4, 'Avifors', 'A transfiguration spell that transformed small objects and creatures into birds.', 88, 35),
+        (5, 'Petrificus Totalus', 'A curse that temporarily paralyses the opponent.', 100, 40),
+        (6, 'Impedimenta', 'A jinx that hinders the movement of the target, slowing it down or stopping it in its tracks.', 125, 50),
+        (7, 'Depulso', 'A charm that sends the target away from the caster. It can send a target towards a specific location.', 150, 60),
+        (8, 'Expelliarmus', 'A charm that forces whatever an opponent was holding to fly out of their hand. Commonly used in duels to make an opponent lose their wand.', 150, 60),
+        (9, 'Flipendo', 'A jinx that knocks the target backwards. Could also be used to push heavy objects.', 175, 70),
+        (10, 'Stupefy', 'A charm that stuns the target, rendering them unconscious. Useful in duelling as it can quickly end a duel without causing lasting damage.', 175, 70);
     
     INSERT INTO Creature (creature_id, creature_name, creature_health, reward_points, description)
     VALUES

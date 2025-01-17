@@ -1,11 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .house-emblem {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+    }
     
+    .card-body {
+      border: none;
+    }
+
+    .card-background-opacity {
+      background-color: rgba(72, 68, 132, 0.75) !important;
+    }
+
+    .btn-custom {
+      background-color: #6c757d;
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background-color: #495057;
+    }
+
+    /* Dropdown hover effect */
+    .dropdown-item:hover {
+      color: white !important; /* Text color on hover */
+      background-color: black !important; /* Background color on hover */
+    }
+
+    /* Floating review container */
+    .floating-review {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    /* Scale effect on hover */
+    .floating-review:hover {
+      transform: scale(1.1);
+    }
+
+    /* Icon inside the button */
+    .review-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Register button color */
+    .btn-register {
+      background-color: rgb(88, 92, 252) !important;
+      color: white !important;
+      border: none;
+    }
+
+    /* Register button hover effect */
+    .btn-register:hover {
+      background-color: rgba(88, 92, 252, 0.8) !important;
+    }
+
+    .btn-dark-custom {
+      background-color: rgb(88, 92, 252);
+      border: none;
+      color: white;
+    }   
+
+    .btn-dark-custom:hover {
+      background-color: rgb(16, 20, 60);
+    }
+
+    .custom-badge {
+      background-color: rgb(88, 92, 252) !important; /* Custom gold background */
+    }
+
+    .skillpoints-badge {
+      font-size: 0.8rem; /* Slightly larger than default */
+    }
+
+    /* Save Button Custom Colors */
+    .btn-save {
+      background-color: rgb(88, 92, 252); /* Green for Save button */
+      border: none;
+      color: white;
+    }
+    
+    .btn-save:hover {
+      background-color: rgba(88, 92, 252, 0.8); /* Darker green on hover */
+    }
+    
+    /* Choose House Button Custom Colors */
+    .btn-choose-house {
+      background-color: rgb(88, 92, 252); /* Blue for Choose House button */
+      border: none;
+      color: white;
+    }
+    
+    .btn-choose-house:hover {
+      background-color: rgba(88, 92, 252, 0.8); /* Darker blue on hover */
+    }
+
+    .custom-header {
+      background-color: rgb(88, 92, 252) !important;
+    }
+
+    /* Gryffindor Button */
+    .btn-gryffindor {
+      background-color: #d82626; /* Scarlet Red */
+      color: white;
+      border: none;
+    }
+    
+    .btn-gryffindor:hover {
+      background-color: #a11c1c; /* Darker Red */
+    }
+    
+    /* Hufflepuff Button */
+    .btn-hufflepuff {
+      background-color: #f4c430; /* Bright Yellow */
+      color: black;
+      border: none;
+    }
+    
+    .btn-hufflepuff:hover {
+      background-color: #c3a021; /* Darker Yellow */
+    }
+    
+    /* Ravenclaw Button */
+    .btn-ravenclaw {
+      background-color: #2a4d9b; /* Deep Blue */
+      color: white;
+      border: none;
+    }
+    
+    .btn-ravenclaw:hover {
+      background-color: #1c356a; /* Darker Blue */
+    }
+    
+    /* Slytherin Button */
+    .btn-slytherin {
+      background-color: #2a623d; /* Emerald Green */
+      color: white;
+      border: none;
+    }
+    
+    .btn-slytherin:hover {
+      background-color: #1b422a; /* Darker Green */
+    }
+    /* Add initial transition to all cards */
+    #houseModal .card {
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth and natural easing */
+    }
+    
+    /* Hover effect for house cards */
+    #houseModal .card:hover {
+      transform: scale(1.05); /* Scale up slightly more */
+    }
+  </style>
+</head>
+<body class="bg-dark text-white">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0,0,27,255);">
+    <div class="container-fluid">
+        <!-- Navbar Brand with Custom Logo -->
+        <a class="navbar-brand" href="index.html">
+            <img src="images/navbar-brand-logo.png" alt="Logo" class="d-inline-block align-text-top" style="height: 40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 30 30%22%3E%3Cpath stroke%3D%22rgba%28255, 255, 255, 1%29%22 stroke-width%3D%222%22 d%3D%22M4 7h22M4 15h22M4 23h22%22/%3E%3C/svg%3E');"></span>
+        </button>           
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-3">
+                    <a class="nav-link text-light" href="index.html">Home</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a class="nav-link text-light" href="challenges.html">Fitness Challenges</a>
+                </li>
+                <!-- Diagon Alley Dropdown -->
+                <li class="nav-item dropdown mx-3">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="diagonAlleyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Diagon Alley
+                    </a>
+                    <ul class="dropdown-menu bg-light">
+                        <li><a class="dropdown-item text-dark" href="wandShop.html">Wand Shop</a></li>
+                        <li><a class="dropdown-item text-dark" href="potionShop.html">Potion Shop</a></li>
+                        <li><a class="dropdown-item text-dark" href="spellShop.html">Spell Shop</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-3">
+                    <a class="nav-link text-light" href="vault.html">Vault</a>
+                </li>
+                <!-- Magical Adventures Dropdown -->
+                <li class="nav-item dropdown mx-3">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="magicalAdventuresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Magical Adventures
+                    </a>
+                    <ul class="dropdown-menu bg-light">
+                        <li><a class="dropdown-item text-dark" href="duel.html">Duel</a></li>
+                        <li><a class="dropdown-item text-dark" href="quests.html">Quests</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-3">
+                    <a id="profileButton" class="nav-link text-light d-none" href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a id="logoutButton" class="nav-link text-light d-none" href="#">Logout</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a id="loginButton" class="nav-link text-light" href="login.html">Login</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a id="registerButton" class="btn btn-outline-light rounded-pill btn-register" href="register.html">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content with Background -->
+  <div style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+  <!-- Header -->
+  <header class="p-4 text-center">
+    <h1>Your Profile</h1>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+  
+      <!-- User Info Section -->
+      <div class="col-md-6 d-flex align-items-stretch">
+        <div class="card bg-dark text-white border-light mb-4 shadow-sm w-100">
+          <div class="card-body position-relative">
+            <h3 class="card-title text-center mb-4">User Info</h3>
+            <i id="editButton" class="bi bi-pencil-square position-absolute top-0 end-0 m-3" style="cursor: pointer;"></i>
+            <p id="userInfoDisplay">
+              <strong>User ID:</strong> 1<br>
+              <strong>Username:</strong> CurrentUsername<br>
+              <strong>Email:</strong> user@example.com<br>
+              <span class="d-flex align-items-center">
+                <img src="images/coin.png" alt="Coin Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                <span class="badge custom-badge d-flex align-items-center skillpoints-badge">
+                  <strong>Skillpoints:</strong>&nbsp;<span id="skillpoints"> 150</span>
+                </span>
+              </span>
+            </p>                  
+            <form id="userInfoForm" class="mt-4 d-none">
+              <div class="mb-3">
+                <label for="username" class="form-label">New Username</label>
+                <input type="text" id="username" class="form-control bg-dark text-white border-light" value="CurrentUsername">
+              </div>
+              <button type="button" id="saveButton" class="btn btn-save w-100">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Hogwarts House Section -->
+      <div class="col-md-6 d-flex align-items-stretch">
+        <div class="card bg-dark text-white border-light mb-4 shadow-sm w-100">
+          <div class="card-body text-center">
+            <h3 class="card-title">Hogwarts House</h3>
+            <!-- Default House Emblem -->
+            <img id="houseEmblem" class="house-emblem" src="images/hogwarts-houses.png" alt="Default House Emblem">
+            <div id="houseSection">
+              <p id="houseMessage">The Sorting Hat awaits! You haven't been sorted into a house yet. Tap below to embark on your magical journey and choose your Hogwarts House! 🪄</p>
+              <button type="button" id="chooseHouseButton" class="btn btn-choose-house w-100 mt-3" data-bs-toggle="modal" data-bs-target="#houseModal"><strong>Choose House</strong></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Activity History Section -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card bg-dark text-white border-light shadow-sm mb-5">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Activity History</h3>
+            <div class="table-responsive">
+              <table class="table table-dark table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th class="custom-header" scope="col">Date</th>
+                    <th class="custom-header" scope="col">Activity Type</th>
+                    <th class="custom-header" scope="col">Activity Detail</th>
+                    <th class="custom-header" scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2025-01-15</td>
+                    <td>Challenge</td>
+                    <td>Completed challenge: Complete 2.4km within 12 minutes</td>
+                    <td>Completed</td>
+                  </tr>
+                  <tr>
+                    <td>2025-01-14</td>
+                    <td>Duel</td>
+                    <td>Duel with creature: Nightmare Thestral</td>
+                    <td>Won</td>
+                  </tr>
+                  <tr>
+                    <td>2025-01-13</td>
+                    <td>Quest</td>
+                    <td>Completed quest: Golden Snitch Chase</td>
+                    <td>Completed</td>
+                  </tr>
+                  <tr>
+                    <td>2025-01-12</td>
+                    <td>House Selection</td>
+                    <td>Chosen house: Gryffindor</td>
+                    <td>-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- House Selection Modal -->
+  <div class="modal fade" id="houseModal" tabindex="-1" aria-labelledby="houseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="houseModalLabel">Choose Your House</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">Get ready to be sorted into your house! Choose wisely, as this decision will shape your magical journey!</p>
+          <div class="row">
+            <!-- Gryffindor Card -->
+            <div class="col-md-12 col-lg-6 mb-4">
+              <div class="card bg-dark text-white shadow-sm border border-white">
+                <img src="images/gryffindor.png" class="card-img-top house-emblem mx-auto mt-3" alt="Gryffindor Emblem">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Gryffindor</h5>
+                  <p class="card-text">Bravery, daring, nerve, and chivalry. Gryffindors are courageous at heart.</p>
+                  <button class="btn btn-gryffindor w-100" data-house="Gryffindor" data-emblem="images/gryffindor.png">Choose House</button>
+                </div>
+              </div>
+            </div>
+            <!-- Hufflepuff Card -->
+            <div class="col-md-12 col-lg-6 mb-4">
+              <div class="card bg-dark text-white shadow-sm border border-white">
+                <img src="images/hufflepuff.png" class="card-img-top house-emblem mx-auto mt-3" alt="Hufflepuff Emblem">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Hufflepuff</h5>
+                  <p class="card-text">Dedication, patience, loyalty, and fair play. Hufflepuffs value hard work.</p>
+                  <button class="btn btn-hufflepuff w-100" data-house="Hufflepuff" data-emblem="images/hufflepuff.png">Choose House</button>
+                </div>
+              </div>
+            </div>
+            <!-- Ravenclaw Card -->
+            <div class="col-md-12 col-lg-6 mb-4">
+              <div class="card bg-dark text-white shadow-sm border border-white">
+                <img src="images/ravenclaw.png" class="card-img-top house-emblem mx-auto mt-3" alt="Ravenclaw Emblem">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Ravenclaw</h5>
+                  <p class="card-text">Intelligence, wisdom, creativity, and learning. Ravenclaws are sharp-minded.</p>
+                  <button class="btn btn-ravenclaw w-100" data-house="Ravenclaw" data-emblem="images/ravenclaw.png">Choose House</button>
+                </div>
+              </div>
+            </div>
+            <!-- Slytherin Card -->
+            <div class="col-md-12 col-lg-6 mb-4">
+              <div class="card bg-dark text-white shadow-sm border border-white">
+                <img src="images/slytherin.png" class="card-img-top house-emblem mx-auto mt-3" alt="Slytherin Emblem">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Slytherin</h5>
+                  <p class="card-text">Ambition, cunning, resourcefulness, and determination. Slytherins are leaders.</p>
+                  <button class="btn btn-slytherin w-100" data-house="Slytherin" data-emblem="images/slytherin.png">Choose House</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="text-center py-3 bg-dark text-white">
+    © 2025 Yip Jay Ying, Class DAAA/FT/1B/07. All rights reserved.<br>
+    This project is a Back-End Web Development assignment inspired by the magical world of Harry Potter, created by J.K. Rowling.<br>
+    It is not affiliated with or endorsed by J.K. Rowling or Warner Bros.<br>
+    Visit the <a href="https://www.wizardingworld.com/" target="_blank" class="text-light">Official Wizarding World</a> for more magical content.
+  </footer>
+
+  <!-- Floating Review Icon -->
+  <div class="floating-review" data-bs-toggle="tooltip" data-bs-placement="top" title="Rate your experience: Leave a Review!" onclick="window.location.href='owlPost.html'" style="background-color: rgb(88, 92, 252);">
+    <i class="bi bi-chat-right-text-fill" style="font-size: 25px;"></i>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/queryCmds.js" type="text/javascript"></script>
+  <script src="js/getCurrentURL.js" type="text/javascript"></script>
+  <script src="js/userNavbarToggle.js" type="text/javascript"></script>
+  <script src="js/profile.js" type="text/javascript"></script>
+
 </body>
 </html>

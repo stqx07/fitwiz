@@ -176,10 +176,10 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
     
     INSERT INTO HogwartsHouse (house_id, house_name, house_description)
     VALUES 
-        (1, 'Gryffindor', 'Gryffindor was founded by Godric Gryffindor and favoured students who possessed characteristics such as courage, bravery and determination. The house colours were scarlet and gold, and the emblematic animal was a lion, which decorated the walls of the Gryffindor common room.'),
-        (2, 'Hufflepuff', 'Hufflepuff was founded by Helga Hufflepuff who valued hard work, patience, loyalty and fairness over any particular aptitude in any of her students. The house colours were black and yellow and its emblem a badger. These colours decorated the walls of the Hufflepuff underground common room.'),
-        (3, 'Ravenclaw', 'Ravenclaw was one of four Hogwarts houses and prized students whose focus was on learning, wit and wisdom. This reflected the nature of their founder, Rowena Ravenclaw who was known to be a woman of remarkable diligence and intelligence. The Ravenclaw common room was decorated with the house colours of blue and bronze along with their eagle emblem.'),
-        (4, 'Slytherin', 'Slytherin was one of the four Hogwarts houses and was characterised by its silver and green colours and serpent emblem. The Slytherin common room was located in the castle dungeons. Founded by Salazar Slytherin, the students sent to Slytherin were representative of his preference for characters defined by cunning, pride and ambition.');
+        (1, 'Gryffindor', 'Bravery, daring, nerve, and chivalry. Gryffindors are courageous at heart.'),
+        (2, 'Hufflepuff', 'Dedication, patience, loyalty, and fair play. Hufflepuffs value hard work.'),
+        (3, 'Ravenclaw', 'Intelligence, wisdom, creativity, and learning. Ravenclaws are sharp-minded.'),
+        (4, 'Slytherin', 'Ambition, cunning, resourcefulness, and determination. Slytherins are leaders.');
     
     INSERT INTO FitnessChallenge (challenge_id, creator_id, challenge, skillpoints)
     VALUES 

@@ -64,6 +64,48 @@
     .btn-register:hover {
       background-color: rgba(88, 92, 252, 0.8) !important;
     }
+
+    /* Scoped styles for the nav-tabs with ID 'leaderboardTabs' */
+    #leaderboardTabs {
+      justify-content: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    #leaderboardTabs .nav-link {
+      background-color: rgba(0, 0, 27, 0.9);
+      color: white;
+      border-radius: 0.5rem;
+      margin: 0 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-color: rgba(255, 255, 255, 0.2)
+    }
+    
+    #leaderboardTabs .nav-link.active {
+      background-color: rgb(88, 92, 252);
+      color: white;
+      border-color: rgb(88, 92, 252) rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.2);
+    }
+    
+    #leaderboardTabs .nav-link:hover {
+      background-color: rgba(88, 92, 252, 0.8);
+      color: white;
+    }
+    
+    #houseFilter {
+      background-color: rgba(0, 0, 27, 0.9);
+      color: white;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    #houseFilter:hover {
+      background-color: rgb(88, 92, 252);
+      color: white;
+    }
+    
+    #houseFilter option {
+      background-color: white;
+      color: black;
+    }
   </style>
 </head>
 <body class="bg-dark text-white">
@@ -127,8 +169,11 @@
     </div>
   </nav>
 
+<!-- Parent Wrapper with Background -->
+<div style="background-image: url('images/background.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
+  
   <!-- Hero Section -->
-  <div class="hero d-flex align-items-center vh-100" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="hero d-flex align-items-center" style="min-height: 90vh;">
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
@@ -142,8 +187,99 @@
     </div>
   </div>
 
+  <!-- Leaderboard Section -->
+  <div class="container py-4 border" style="background-color: rgba(0,0,27,0.5); border-radius: 1.2rem;">
+    <h2 class="text-center text-white mb-4">Leaderboard</h2>
+    <p class="text-center text-white mb-4">
+      "Every spell cast, every duel fought, every quest completed—your magical journey is immortalized here. 
+      Rise to the top and make your house proud!"
+    </p>
+    <!-- Tabs -->
+    <ul class="nav nav-tabs justify-content-center mb-4" id="leaderboardTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="user-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#user-leaderboard" type="button" role="tab" aria-controls="user-leaderboard" aria-selected="true">User Leaderboard</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="house-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#house-leaderboard" type="button" role="tab" aria-controls="house-leaderboard" aria-selected="false">House Leaderboard</button>
+      </li>
+    </ul>
+  
+    <div class="tab-content" id="leaderboardTabsContent">
+      <!-- User Leaderboard -->
+      <div class="tab-pane fade show active" id="user-leaderboard" role="tabpanel" aria-labelledby="user-leaderboard-tab">
+        <h4 class="text-center text-white mb-4">Top 10 Users</h4>
+        <div class="d-flex justify-content-center mb-4">
+          <select class="form-select w-auto" id="houseFilter" aria-label="Filter by House">
+            <option selected value="all">All Houses</option>
+            <option value="gryffindor">Gryffindor</option>
+            <option value="hufflepuff">Hufflepuff</option>
+            <option value="ravenclaw">Ravenclaw</option>
+            <option value="slytherin">Slytherin</option>
+          </select>
+        </div>      
+        <table class="table table-dark table-striped text-center align-middle">
+          <thead>
+            <tr>
+              <th style="background-color: rgb(88, 92, 252)"scope="col">No.</th>
+              <th style="background-color: rgb(88, 92, 252)"scope="col">Username</th>
+              <th style="background-color: rgb(88, 92, 252)"scope="col">Challenges Completed</th>
+              <th style="background-color: rgb(88, 92, 252)"scope="col">Duels Won</th>
+              <th style="background-color: rgb(88, 92, 252)"scope="col">Quests Completed</th>
+              <th style="background-color: rgb(88, 92, 252)"scope="col">Skillpoints Gained</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Harry Potter</td>
+              <td>15</td>
+              <td>10</td>
+              <td>8</td>
+              <td>1200</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Hermione Granger</td>
+              <td>20</td>
+              <td>12</td>
+              <td>10</td>
+              <td>1500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- House Leaderboard -->
+      <div class="tab-pane fade" id="house-leaderboard" role="tabpanel" aria-labelledby="house-leaderboard-tab">
+        <h4 class="text-center text-white mb-4">Top Houses</h4>
+        <table class="table table-dark table-striped text-center align-middle">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">House</th>
+              <th scope="col">Skillpoints Gained</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Add static rows as placeholders -->
+            <tr>
+              <td>1</td>
+              <td>Gryffindor</td>
+              <td>5000</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Slytherin</td>
+              <td>4500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
-  <footer class="text-center py-3 bg-dark text-white">
+  <footer class="text-center py-3 mt-5 bg-dark text-white">
     © 2025 Yip Jay Ying, Class DAAA/FT/1B/07. All rights reserved.<br>
     This project is a Back-End Web Development assignment inspired by the magical world of Harry Potter, created by J.K. Rowling.<br>
     It is not affiliated with or endorsed by J.K. Rowling or Warner Bros.<br>

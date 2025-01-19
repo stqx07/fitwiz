@@ -28,6 +28,16 @@
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
 }
 
+/* Add initial transition to all cards in the duel modal */
+#duelModal .card {
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth and natural easing for card animations */
+}
+
+/* Hover effect for duel cards in the modal */
+#duelModal .card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+}
+
 .filter {
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
 }

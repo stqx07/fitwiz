@@ -53,4 +53,60 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.hide();
       });
     });
-});
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all house buttons
+    const houseButtons = document.querySelectorAll(".btn[data-house]");
+  
+    houseButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        // Get the selected house and emblem from the button's data attributes
+        const selectedHouse = button.getAttribute("data-house");
+        const selectedEmblem = button.getAttribute("data-emblem");
+  
+        // Update the house message
+        const houseMessage = document.getElementById("houseMessage");
+        const houseDescriptionElement = document.createElement("p"); // Create a new paragraph for the description
+        houseDescriptionElement.setAttribute("id", "houseDescription"); // Add an ID for styling if needed
+  
+        let houseDescription = "";
+  
+        switch (selectedHouse) {
+          case "Gryffindor":
+            houseDescription = "Bravery, daring, and chivalry define you. The sword of Godric Gryffindor shines in your honor!";
+            break;
+          case "Ravenclaw":
+            houseDescription = "Wisdom, wit, and learning are your strengths. The eagles soar high with your intellect!";
+            break;
+          case "Hufflepuff":
+            houseDescription = "Loyalty, patience, and kindness guide you. You embody the warmth of the golden badger!";
+            break;
+          case "Slytherin":
+            houseDescription = "Ambition, cunning, and resourcefulness are your virtues. The serpent rises with your cleverness!";
+            break;
+          default:
+            houseDescription = "Welcome to the magical world of Hogwarts!";
+        }
+  
+        houseMessage.textContent = `You belong to ${selectedHouse}!`;
+        houseDescriptionElement.textContent = houseDescription;
+  
+        houseMessage.insertAdjacentElement("afterend", houseDescriptionElement);
+  
+        // Update the house emblem
+        const houseEmblem = document.getElementById("houseEmblem");
+        houseEmblem.src = selectedEmblem;
+        houseEmblem.alt = `${selectedHouse} Emblem`;
+  
+        // Remove the "Choose House" button
+        const chooseHouseButton = document.getElementById("chooseHouseButton");
+        chooseHouseButton.style.display = "none"; // Hides the button
+  
+        // Close the modal
+        const houseModal = document.getElementById("houseModal");
+        const modalInstance = bootstrap.Modal.getInstance(houseModal);
+        modalInstance.hide();
+      });
+    });
+  });

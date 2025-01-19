@@ -64,6 +64,10 @@
     .btn-register:hover {
       background-color: rgba(88, 92, 252, 0.8) !important;
     }
+
+    ::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    }
   </style>
 </head>
 <body class="bg-dark text-white">
@@ -126,6 +130,121 @@
         </div>
     </div>
   </nav>
+
+  <!-- Fitness Challenges Section -->
+  <div style="background-image: url('images/background.jpeg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
+    <div class="container py-5">
+      <!-- Page Header -->
+      <header class="text-center text-white mb-4">
+        <h1>Fitness Challenges</h1>
+        <p class="lead">Prove your worth as a wizard by completing magical fitness challenges and earning skill points!</p>
+      </header>
+  
+      <!-- Create Challenge Form -->
+      <div class="card mb-5 p-4" style="background-color: rgba(0, 0, 27, 0.9);">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center mb-4">Create a New Challenge</h5>
+          <form id="createChallengeForm" class="row g-3">
+            <div class="col-md-6">
+              <label for="challengeName" class="form-label text-white">Challenge</label>
+              <input type="text" class="form-control bg-transparent text-white border-secondary" id="challengeName" placeholder="Enter challenge name">
+            </div>
+            <div class="col-md-6">
+              <label for="skillPoints" class="form-label text-white">Skillpoints</label>
+              <input type="number" class="form-control bg-transparent text-white border-secondary" id="skillPoints" placeholder="Enter skillpoints">
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-read-more w-50">Create Challenge</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Challenges List -->
+      <div class="row g-4 justify-content-center">
+        <!-- Challenge Card 1 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+            <div class="card-body">
+              <h5 class="card-title">Complete 2.4km within 15 minutes</h5>
+              <p class="card-text"><strong>Challenge ID:</strong> 1 | <strong>Skillpoints:</strong> 50</p>
+              <button class="btn btn-read-more">Complete Challenge</button>
+              <button class="btn btn-edit" title="Edit Challenge">
+                <i class="bi bi-pencil-square text-light"></i>
+              </button>
+              <button class="btn btn-delete text-light" title="Delete Challenge">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Challenge Card 2 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+            <div class="card-body">
+              <h5 class="card-title">Cycle around the island for at least 50km</h5>
+              <p class="card-text"><strong>Challenge ID:</strong> 2 | <strong>Skillpoints:</strong> 100</p>
+              <button class="btn btn-read-more">Complete Challenge</button>
+              <button class="btn btn-edit" title="Edit Challenge">
+                <i class="bi bi-pencil-square text-light"></i>
+              </button>
+              <button class="btn btn-delete text-light" title="Delete Challenge">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Challenge Card 3 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+            <div class="card-body">
+              <h5 class="card-title">Complete a full marathon (42.2km)</h5>
+              <p class="card-text"><strong>Challenge ID:</strong> 3 | <strong>Skillpoints:</strong> 200</p>
+              <button class="btn btn-read-more">Complete Challenge</button>
+              <button class="btn btn-edit" title="Edit Challenge">
+                <i class="bi bi-pencil-square text-light"></i>
+              </button>
+              <button class="btn btn-delete text-light" title="Delete Challenge">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Challenge Card 4 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+            <div class="card-body">
+              <h5 class="card-title">Hold a plank for 5 minutes</h5>
+              <p class="card-text"><strong>Challenge ID:</strong> 4 | <strong>Skillpoints:</strong> 50</p>
+              <button class="btn btn-read-more">Complete Challenge</button>
+              <button class="btn btn-edit" title="Edit Challenge">
+                <i class="bi bi-pencil-square text-light"></i>
+              </button>
+              <button class="btn btn-delete text-light" title="Delete Challenge">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Challenge Card 5 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+            <div class="card-body">
+              <h5 class="card-title">Perform 100 push-ups in one session</h5>
+              <p class="card-text"><strong>Challenge ID:</strong> 5 | <strong>Skillpoints:</strong> 75</p>
+              <button class="btn btn-read-more">Complete Challenge</button>
+              <button class="btn btn-edit" title="Edit Challenge">
+                <i class="bi bi-pencil-square text-light"></i>
+              </button>
+              <button class="btn btn-delete text-light" title="Delete Challenge">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="text-center py-3 bg-dark text-white">

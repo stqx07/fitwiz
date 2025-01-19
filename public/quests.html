@@ -7,92 +7,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    /* Dropdown hover effect */
-    .dropdown-item:hover {
-      color: white !important; /* Text color on hover */
-      background-color: black !important; /* Background color on hover */
-    }
-    /* Floating review container */
-    .floating-review {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
-    
-    /* Scale effect on hover */
-    .floating-review:hover {
-      transform: scale(1.1);
-    }
-    
-    /* Icon inside the button */
-    .review-icon {
-      width: 30px;
-      height: 30px;
-    }
-
-    #questTabs {
-      justify-content: center;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Light white line */
-    }
-    
-    #questTabs .nav-link {
-      background-color: rgba(0, 0, 27, 0.9);
-      color: white;
-      border-radius: 0.5rem;
-      margin: 0 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    #questTabs .nav-link.active {
-      background-color: rgb(88, 92, 252);
-      color: white;
-      border-color: rgb(88, 92, 252) rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.2); /* Highlight active tab */
-    }
-    
-    #questTabs .nav-link:hover {
-      background-color: rgba(88, 92, 252, 0.8);
-      color: white;
-    }
-
-    /* Card styling */
-    .card {
-      background-color: rgba(0, 0, 27, 0.9);
-      border: none;
-      color: white;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .card img {
-      object-fit: contain;
-      height: 150px;
-      margin-bottom: 1rem;
-    }
-
-    .btn-quest {
-      background-color: rgb(88, 92, 252);
-      color: white !important;
-    }
-
-    .btn-quest:hover {
-      background-color: rgba(88, 92, 252, 0.8);
-    }
-  </style>
+  <link href="css/color.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-white">
 
@@ -148,7 +64,7 @@
                     <a id="loginButton" class="nav-link text-light" href="login.html">Login</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a id="registerButton" class="btn btn-outline-light rounded-pill btn-register" href="register.html">Register</a>
+                    <a id="registerButton" class="btn btn-primary rounded-pill" href="register.html">Register</a>
                 </li>
             </ul>
         </div>
@@ -165,7 +81,7 @@
           </header>
   
           <!-- Tabs -->
-          <ul class="nav nav-tabs mb-5" id="questTabs" role="tablist">
+          <ul class="nav nav-tabs custom-tabs mb-5" id="questTabs" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="available-quests-tab" data-bs-toggle="tab" data-bs-target="#available-quests" type="button" role="tab" aria-controls="available-quests" aria-selected="true">Available Quests</button>
               </li>
@@ -180,37 +96,37 @@
                     
             <!-- Quest Card 1 -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card h-100">
+                <div class="custom-card h-100">
                   <img src="images/quest1.webp" alt="Quest 1" class="card-img-top">
                   <div class="card-body text-center">
                     <h5 class="card-title">Escape from the Forbidden Forest</h5>
                     <p class="card-text">Complete a 2.4km run within 15 minutes to dodge magical creatures and enchanted obstacles. Race against time to escape the dangers of the Forbidden Forest and prove your bravery!</p>
                     <p class="card-text"><strong>Reward:</strong> 45 Skillpoints</p>
-                    <button class="btn btn-quest">Start Quest</button>
+                    <button class="btn btn-primary">Start Quest</button>
                   </div>
                 </div>
               </div>
               <!-- Quest Card 2 -->
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card h-100">
+                <div class="custom-card h-100">
                   <img src="images/quest2.jpg" alt="Quest 2" class="card-img-top">
                   <div class="card-body text-center">
                     <h5 class="card-title">Golden Snitch Chase</h5>
                     <p class="card-text">Cycle 50km through challenging paths and tricky trails in pursuit of the elusive Golden Snitch. Navigate steep hills and sharp turns as you push your limits to capture the Snitch and achieve ultimate glory!</p>
                     <p class="card-text"><strong>Reward:</strong> 90 Skillpoints</p>
-                    <button class="btn btn-quest">Start Quest</button>
+                    <button class="btn btn-primary">Start Quest</button>
                   </div>
                 </div>
               </div>
               <!-- Quest Card 3 -->
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card h-100">
+                <div class="custom-card h-100">
                   <img src="images/quest3.avif" alt="Quest 3" class="card-img-top">
                   <div class="card-body text-center">
                     <h5 class="card-title">Escape the Basilisk</h5>
                     <p class="card-text">Complete a 42.2km marathon to outrun the terrifying Basilisk through enchanted paths and cursed terrains. Avoid the petrifying gaze of the serpent and prove your courage in this ultimate test of endurance!</p>
                     <p class="card-text"><strong>Reward:</strong> 180 Skillpoints</p>
-                    <button class="btn btn-quest">Start Quest</button>
+                    <button class="btn btn-primary">Start Quest</button>
                   </div>
                 </div>
               </div>

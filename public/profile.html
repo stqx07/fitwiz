@@ -7,170 +7,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    .house-emblem {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-    }
-    
-    .card-body {
-      border: none;
-    }
-
-    .card-background-opacity {
-      background-color: rgba(72, 68, 132, 0.75) !important;
-    }
-
-    .btn-custom {
-      background-color: #6c757d;
-      border: none;
-    }
-
-    .btn-custom:hover {
-      background-color: #495057;
-    }
-
-    /* Dropdown hover effect */
-    .dropdown-item:hover {
-      color: white !important; /* Text color on hover */
-      background-color: black !important; /* Background color on hover */
-    }
-
-    /* Floating review container */
-    .floating-review {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
-
-    /* Scale effect on hover */
-    .floating-review:hover {
-      transform: scale(1.1);
-    }
-
-    /* Icon inside the button */
-    .review-icon {
-      width: 30px;
-      height: 30px;
-    }
-
-    /* Register button color */
-    .btn-register {
-      background-color: rgb(88, 92, 252) !important;
-      color: white !important;
-      border: none;
-    }
-
-    /* Register button hover effect */
-    .btn-register:hover {
-      background-color: rgba(88, 92, 252, 0.8) !important;
-    }
-
-    .btn-dark-custom {
-      background-color: rgb(88, 92, 252);
-      border: none;
-      color: white;
-    }   
-
-    .btn-dark-custom:hover {
-      background-color: rgb(16, 20, 60);
-    }
-
-    .custom-badge {
-      background-color: rgb(88, 92, 252) !important; /* Custom gold background */
-    }
-
-    /* Save Button Custom Colors */
-    .btn-save {
-      background-color: rgb(88, 92, 252); /* Green for Save button */
-      border: none;
-      color: white;
-    }
-    
-    .btn-save:hover {
-      background-color: rgba(88, 92, 252, 0.8); /* Darker green on hover */
-    }
-    
-    /* Choose House Button Custom Colors */
-    .btn-choose-house {
-      background-color: rgb(88, 92, 252); /* Blue for Choose House button */
-      border: none;
-      color: white;
-    }
-    
-    .btn-choose-house:hover {
-      background-color: rgba(88, 92, 252, 0.8); /* Darker blue on hover */
-    }
-
-    .custom-header {
-      background-color: rgb(88, 92, 252) !important;
-    }
-
-    /* Gryffindor Button */
-    .btn-gryffindor {
-      background-color: #d82626; /* Scarlet Red */
-      color: white;
-      border: none;
-    }
-    
-    .btn-gryffindor:hover {
-      background-color: #a11c1c; /* Darker Red */
-    }
-    
-    /* Hufflepuff Button */
-    .btn-hufflepuff {
-      background-color: #f4c430; /* Bright Yellow */
-      color: black;
-      border: none;
-    }
-    
-    .btn-hufflepuff:hover {
-      background-color: #c3a021; /* Darker Yellow */
-    }
-    
-    /* Ravenclaw Button */
-    .btn-ravenclaw {
-      background-color: #2a4d9b; /* Deep Blue */
-      color: white;
-      border: none;
-    }
-    
-    .btn-ravenclaw:hover {
-      background-color: #1c356a; /* Darker Blue */
-    }
-    
-    /* Slytherin Button */
-    .btn-slytherin {
-      background-color: #2a623d; /* Emerald Green */
-      color: white;
-      border: none;
-    }
-    
-    .btn-slytherin:hover {
-      background-color: #1b422a; /* Darker Green */
-    }
-
-    /* Add initial transition to all cards */
-    #houseModal .card {
-      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth and natural easing */
-    }
-    
-    /* Hover effect for house cards */
-    #houseModal .card:hover {
-      transform: scale(1.05); /* Scale up slightly more */
-    }
-  </style>
+  <link href="css/color.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-white">
 
@@ -226,7 +64,7 @@
                     <a id="loginButton" class="nav-link text-light" href="login.html">Login</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a id="registerButton" class="btn btn-outline-light rounded-pill btn-register" href="register.html">Register</a>
+                    <a id="registerButton" class="btn btn-primary rounded-pill" href="register.html">Register</a>
                 </li>
             </ul>
         </div>
@@ -279,7 +117,7 @@
             <label for="username" class="form-label">New Username</label>
             <input type="text" id="username" class="form-control bg-dark text-white border-light" value="CurrentUsername">
           </div>
-          <button type="button" id="saveButton" class="btn btn-save w-100">Edit Username</button>
+          <button type="button" id="saveButton" class="btn btn-primary w-100">Edit Username</button>
         </form>
       </div>
     </div>
@@ -294,7 +132,7 @@
             <img id="houseEmblem" class="house-emblem" src="images/hogwarts-houses.png" alt="Default House Emblem">
             <div id="houseSection">
               <p id="houseMessage">The Sorting Hat awaits! You haven't been sorted into a house yet. Tap below to embark on your magical journey and choose your Hogwarts House! 🪄</p>
-              <button type="button" id="chooseHouseButton" class="btn btn-choose-house w-100 mt-3" data-bs-toggle="modal" data-bs-target="#houseModal"><strong>Choose House</strong></button>
+              <button type="button" id="chooseHouseButton" class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#houseModal"><strong>Choose House</strong></button>
             </div>
           </div>
         </div>

@@ -1,0 +1,140 @@
+:root {
+    /* Define custom CSS variables for colors and styling */
+    --custom-color: rgb(88, 92, 252); /* Primary color */
+    --custom-color-light: rgb(130, 132, 252); /* Lighter shade for active states */
+    --custom-color-darker: rgba(88, 92, 252, 0.8); /* Hover color */
+    --custom-bg-color: rgba(0, 0, 27, 0.9); /* Background color */
+    --custom-border-color: rgba(255, 255, 255, 0.2); /* Light white border */
+    --custom-text-color: white; /* Text color */
+    --custom-placeholder-color: rgba(255, 255, 255, 0.6); /* Placeholder text color */
+    --custom-card-bg-color: rgba(0, 0, 27, 0.9); /* Card background color */
+    --custom-card-hover-shadow: rgba(0, 0, 0, 0.3); /* Shadow for hover effect on cards */
+    --custom-filter-option-bg-color: white; /* Background color for dropdown options */
+    --custom-filter-option-text-color: black; /* Text color for dropdown options */
+}
+
+.btn-primary {
+    /* Customize primary button styles */
+    --bs-btn-bg: var(--custom-color) !important;
+    --bs-btn-active-bg: var(--custom-color-light) !important;
+    --bs-btn-hover-bg: var(--custom-color-darker) !important;
+    --bs-btn-color: var(--custom-text-color) !important;
+}
+
+.custom-card {
+    /* Card styles for custom components */
+    background-color: var(--custom-card-bg-color) !important;
+    color: var(--custom-card-text-color) !important;
+}
+
+.custom-card:hover {
+    /* Add shadow effect on card hover */
+    box-shadow: 0 8px 15px var(--custom-card-hover-shadow) !important;
+}
+
+.custom-header {
+    /* Header styles with primary background color */
+    background-color: var(--custom-color) !important;
+}
+
+.custom-tabs {
+    /* Custom styling for tabs with a bottom border */
+    border-bottom: 2px solid var(--custom-border-color) !important;
+}
+
+.custom-tabs .nav-link {
+    /* Default tab link styles */
+    background-color: var(--custom-bg-color) !important;
+    color: var(--custom-text-color) !important;
+}
+
+.custom-tabs .nav-link.active {
+    /* Active tab link styles */
+    background-color: var(--custom-color) !important;
+    color: var(--custom-text-color) !important;
+    border-color: var(--custom-color) var(--custom-border-color) var(--custom-border-color) !important;
+}
+
+.custom-tabs .nav-link:hover {
+    /* Hover styles for tab links */
+    background-color: var(--custom-color-darker) !important;
+    color: var(--custom-text-color) !important;
+}
+
+/* Dropdown hover effect */
+.dropdown-item:hover {
+    color: var(--custom-text-color) !important;
+    background-color: var(--custom-filter-option-text-color) !important;
+}
+
+.filter:hover {
+    /* Hover effect for filter elements */
+    background-color: var(--custom-color) !important;
+    color: var(--custom-text-color) !important;
+}
+
+.filter option {
+    /* Dropdown option styles */
+    background-color: var(--custom-filter-option-bg-color) !important;
+    color: var(--custom-filter-option-text-color) !important;
+}
+
+.modal-footer a.text-primary {
+    /* Primary text color for links in modal footer */
+    color: var(--custom-color) !important;
+}
+
+::placeholder {
+    /* Placeholder text color */
+    color: var(--custom-placeholder-color) !important;
+}
+
+/* Gryffindor Button */
+.btn-gryffindor {
+    background-color: #d82626; /* Gryffindor red */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+}
+
+.btn-gryffindor:hover {
+    background-color: #a11c1c; /* Darker red on hover */
+}
+
+/* Hufflepuff Button */
+.btn-hufflepuff {
+    background-color: #f4c430; /* Hufflepuff yellow */
+    color: black; /* Text color */
+    border: none; /* Remove border */
+}
+
+.btn-hufflepuff:hover {
+    background-color: #c3a021; /* Darker yellow on hover */
+}
+
+/* Ravenclaw Button */
+.btn-ravenclaw {
+    background-color: #2a4d9b; /* Ravenclaw blue */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+}
+
+.btn-ravenclaw:hover {
+    background-color: #1c356a; /* Darker blue on hover */
+}
+
+/* Slytherin Button */
+.btn-slytherin {
+    background-color: #2a623d; /* Slytherin green */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+}
+
+.btn-slytherin:hover {
+    background-color: #1b422a; /* Darker green on hover */
+}
+
+/* Floating review container */
+.floating-review {
+    /* Add shadow for floating review containers */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

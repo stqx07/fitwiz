@@ -7,106 +7,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    /* Dropdown hover effect */
-    .dropdown-item:hover {
-      color: white !important; /* Text color on hover */
-      background-color: black !important; /* Background color on hover */
-    }
-    /* Floating review container */
-    .floating-review {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
-    
-    /* Scale effect on hover */
-    .floating-review:hover {
-      transform: scale(1.1);
-    }
-    
-    /* Icon inside the button */
-    .review-icon {
-      width: 30px;
-      height: 30px;
-    }
-
-    /* Read More button color */
-    .btn-read-more {
-      background-color: rgb(88, 92, 252) !important;
-      color: white !important;
-      border: none;
-    }
-
-    /* Read More button hover effect */
-    .btn-read-more:hover {
-      background-color: rgba(88, 92, 252, 0.8) !important;
-    }
-
-    /* Register button color */
-    .btn-register {
-      background-color: rgb(88, 92, 252) !important;
-      color: white !important;
-      border: none;
-    }
-
-    /* Register button hover effect */
-    .btn-register:hover {
-      background-color: rgba(88, 92, 252, 0.8) !important;
-    }
-
-    /* Scoped styles for the nav-tabs with ID 'leaderboardTabs' */
-    #leaderboardTabs {
-      justify-content: center;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    #leaderboardTabs .nav-link {
-      background-color: rgba(0, 0, 27, 0.9);
-      color: white;
-      border-radius: 0.5rem;
-      margin: 0 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      border-color: rgba(255, 255, 255, 0.2)
-    }
-    
-    #leaderboardTabs .nav-link.active {
-      background-color: rgb(88, 92, 252);
-      color: white;
-      border-color: rgb(88, 92, 252) rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.2);
-    }
-    
-    #leaderboardTabs .nav-link:hover {
-      background-color: rgba(88, 92, 252, 0.8);
-      color: white;
-    }
-    
-    #houseFilter {
-      background-color: rgba(0, 0, 27, 0.9);
-      color: white;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    #houseFilter:hover {
-      background-color: rgb(88, 92, 252);
-      color: white;
-    }
-    
-    #houseFilter option {
-      background-color: white;
-      color: black;
-    }
-  </style>
+  <link href="css/color.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-white">
 
@@ -162,7 +64,7 @@
                     <a id="loginButton" class="nav-link text-light" href="login.html">Login</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a id="registerButton" class="btn btn-outline-light rounded-pill btn-register" href="register.html">Register</a>
+                    <a id="registerButton" class="btn btn-primary rounded-pill" href="register.html">Register</a>
                 </li>
             </ul>
         </div>
@@ -181,7 +83,7 @@
           <p class="lead text-white mt-3">
             Unleash your inner wizard and embark on fitness challenges that transform your strength and determination. Earn points for your Hogwarts house, duel magical creatures, and conquer quests to become a legend in the wizarding world.
           </p>
-          <a href="#leaderboardSection" class="btn btn-light mt-4 text-dark btn-read-more">Read More</a>
+          <a href="#leaderboardSection" class="btn btn-primary mt-4">Read More</a>
         </div>
       </div>
     </div>
@@ -195,7 +97,7 @@
       Rise to the top and make your house proud!"
     </p>
     <!-- Tabs -->
-    <ul class="nav nav-tabs justify-content-center mb-4" id="leaderboardTabs" role="tablist">
+    <ul class="nav nav-tabs custom-tabs justify-content-center mb-4" id="leaderboardTabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="user-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#user-leaderboard" type="button" role="tab" aria-controls="user-leaderboard" aria-selected="true">User Leaderboard</button>
       </li>
@@ -209,7 +111,7 @@
       <div class="tab-pane fade show active" id="user-leaderboard" role="tabpanel" aria-labelledby="user-leaderboard-tab">
         <h4 class="text-center text-white mb-4">Top 10 Users</h4>
         <div class="d-flex justify-content-center mb-4">
-          <select class="form-select w-auto" id="houseFilter" aria-label="Filter by House">
+          <select class="filter form-select w-auto" id="houseFilter" aria-label="Filter by House">
             <option selected value="all">All Houses</option>
             <option value="gryffindor">Gryffindor</option>
             <option value="hufflepuff">Hufflepuff</option>
@@ -220,12 +122,12 @@
         <table class="table table-dark table-striped text-center align-middle">
           <thead>
             <tr>
-              <th style="background-color: rgb(88, 92, 252)"scope="col">No.</th>
-              <th style="background-color: rgb(88, 92, 252)"scope="col">Username</th>
-              <th style="background-color: rgb(88, 92, 252)"scope="col">Challenges Completed</th>
-              <th style="background-color: rgb(88, 92, 252)"scope="col">Duels Won</th>
-              <th style="background-color: rgb(88, 92, 252)"scope="col">Quests Completed</th>
-              <th style="background-color: rgb(88, 92, 252)"scope="col">Skillpoints Gained</th>
+              <th class="custom-header" scope="col">No.</th>
+              <th class="custom-header" scope="col">Username</th>
+              <th class="custom-header" scope="col">Challenges Completed</th>
+              <th class="custom-header" scope="col">Duels Won</th>
+              <th class="custom-header" scope="col">Quests Completed</th>
+              <th class="custom-header" scope="col">Skillpoints Gained</th>
             </tr>
           </thead>
           <tbody>

@@ -7,91 +7,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    /* Dropdown hover effect */
-    .dropdown-item:hover {
-      color: white !important; /* Text color on hover */
-      background-color: black !important; /* Background color on hover */
-    }
-    /* Floating review container */
-    .floating-review {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
-    
-    /* Scale effect on hover */
-    .floating-review:hover {
-      transform: scale(1.1);
-    }
-    
-    /* Icon inside the button */
-    .review-icon {
-      width: 30px;
-      height: 30px;
-    }
-
-    /* Read More button color */
-    .btn-read-more {
-      background-color: rgb(88, 92, 252) !important;
-      color: white !important;
-      border: none;
-    }
-
-    /* Read More button hover effect */
-    .btn-read-more:hover {
-      background-color: rgba(88, 92, 252, 0.8) !important;
-    }
-
-    /* Register button color */
-    .btn-register {
-      background-color: rgb(88, 92, 252) !important;
-      color: white !important;
-      border: none;
-    }
-
-    /* Register button hover effect */
-    .btn-register:hover {
-      background-color: rgba(88, 92, 252, 0.8) !important;
-    }
-
-    /* Card hover effect */
-    .vault-item .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-  
-    .vault-item .card:hover {
-      transform: scale(1.05); /* Slightly expand the card */
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
-    }
-    
-    #itemFilter {
-      background-color: rgb(88, 92, 252);
-      color: white;
-      border: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    #itemFilter:hover {
-      background-color: rgba(88, 92, 252, 0.8);
-      color: white;
-    }
-    
-    #itemFilter option {
-      background-color: white;
-      color: black;
-    }
-  </style>
+  <link href="css/color.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-white">
 
@@ -147,7 +64,7 @@
                     <a id="loginButton" class="nav-link text-light" href="login.html">Login</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a id="registerButton" class="btn btn-outline-light rounded-pill btn-register" href="register.html">Register</a>
+                    <a id="registerButton" class="btn btn-primary rounded-pill" href="register.html">Register</a>
                 </li>
             </ul>
         </div>
@@ -165,7 +82,7 @@
   
       <!-- Filter Dropdown -->
       <div class="d-flex justify-content-center mb-4">
-        <select class="form-select w-auto" id="itemFilter" aria-label="Filter by Item Type">
+        <select class="filter form-select w-auto" id="itemFilter" aria-label="Filter by Item Type">
           <option value="wands">Wands</option>
           <option value="potions">Potions</option>
           <option value="spells">Spells</option>
@@ -176,7 +93,7 @@
       <div class="row g-4 justify-content-center" id="vaultItems">
         <!-- Wand Item -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 vault-item" data-type="wands">
-          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+          <div class="card custom-card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
             <div class="card-body">
               <h5 class="card-title">Cherry wood with a dragon core 12½" and slightly yielding flexibility</h5>
               <p class="card-text">Vault ID: 1 | Wand ID: 5</p>
@@ -185,7 +102,7 @@
         </div>
         <!-- Potion Item -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 vault-item" data-type="potions">
-          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+          <div class="card custom-card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
             <div class="card-body">
               <h5 class="card-title">Essence of Dittany</h5>
               <p class="card-text">Vault ID: 2 | Potion ID: 3</p>
@@ -194,7 +111,7 @@
         </div>
         <!-- Spell Item -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 vault-item" data-type="spells">
-          <div class="card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
+          <div class="card custom-card h-100 text-white text-center" style="background-color: rgba(0,0,27,0.9);">
             <div class="card-body">
               <h5 class="card-title">Expelliarmus</h5>
               <p class="card-text">Vault ID: 3 | Spell ID: 8</p>

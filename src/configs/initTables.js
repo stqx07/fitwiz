@@ -245,6 +245,11 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         'Complete a 42.2km marathon to outrun the terrifying Basilisk through enchanted paths and cursed terrains. Avoid the petrifying gaze of the serpent and prove your courage in this ultimate test of endurance!', 
         180, 
         FALSE);
+
+    INSERT INTO Review (review_id, user_id, name, email, comment, rating, submitted_at) VALUES
+        (1, 1, 'Harry Potter', 'harrypotter@example.com', 'I love the gamified features, especially the quests!', 5, '2025-01-19 10:30:00'),
+        (2, 2, 'Hermione Granger', 'hermionegranger@example.com', 'Great service! The integration of themes and features is creative.', 4, '2025-01-19 10:45:00'),
+        (3, 3, 'Draco Malfoy', 'dracomalfoy@example.com', 'The leaderboard is motivating, I always strive to stay at the top!', 5, '2025-01-19 11:00:00');
     `;
     
     pool.query(SQLSTATEMENT, callback);

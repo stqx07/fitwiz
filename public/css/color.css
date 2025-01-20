@@ -138,3 +138,10 @@
     /* Add shadow for floating review containers */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Placeholder styling for input fields in the review form */
+#reviewForm input::placeholder,
+#reviewForm textarea::placeholder {
+    color: #120000 !important; /* Set placeholder text color to a dark shade */
+    opacity: 0.8 !important; /* Ensure placeholder text is semi-transparent */
+}

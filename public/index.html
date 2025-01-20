@@ -100,10 +100,10 @@
     <!-- Tabs -->
     <ul class="nav nav-tabs custom-tabs justify-content-center mb-4" id="leaderboardTabs" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="user-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#user-leaderboard" type="button" role="tab" aria-controls="user-leaderboard" aria-selected="true">User Leaderboard</button>
+        <button class="nav-link active hover-opacity" id="user-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#user-leaderboard" type="button" role="tab" aria-controls="user-leaderboard" aria-selected="true">User Leaderboard</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="house-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#house-leaderboard" type="button" role="tab" aria-controls="house-leaderboard" aria-selected="false">House Leaderboard</button>
+        <button class="nav-link hover-opacity" id="house-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#house-leaderboard" type="button" role="tab" aria-controls="house-leaderboard" aria-selected="false">House Leaderboard</button>
       </li>
     </ul>
   
@@ -119,8 +119,8 @@
             <option value="ravenclaw">Ravenclaw</option>
             <option value="slytherin">Slytherin</option>
           </select>
-        </div>      
-        <table class="table table-dark table-striped text-center align-middle">
+        </div>
+        <table class="table table-dark table-striped table-hover text-center align-middle">
           <thead>
             <tr>
               <th class="custom-header" scope="col">No.</th>
@@ -132,7 +132,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="hover-opacity">
               <td>1</td>
               <td>Harry Potter</td>
               <td>15</td>
@@ -140,7 +140,7 @@
               <td>8</td>
               <td>1200</td>
             </tr>
-            <tr>
+            <tr class="hover-opacity">
               <td>2</td>
               <td>Hermione Granger</td>
               <td>20</td>
@@ -155,7 +155,7 @@
       <!-- House Leaderboard -->
       <div class="tab-pane fade" id="house-leaderboard" role="tabpanel" aria-labelledby="house-leaderboard-tab">
         <h4 class="text-center text-white mb-4">Top Houses</h4>
-        <table class="table table-dark table-striped text-center align-middle">
+        <table class="table table-dark table-striped table-hover text-center align-middle">
           <thead>
             <tr>
               <th scope="col">No.</th>
@@ -164,13 +164,12 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Add static rows as placeholders -->
-            <tr>
+            <tr class="hover-opacity">
               <td>1</td>
               <td>Gryffindor</td>
               <td>5000</td>
             </tr>
-            <tr>
+            <tr class="hover-opacity">
               <td>2</td>
               <td>Slytherin</td>
               <td>4500</td>

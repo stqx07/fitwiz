@@ -191,12 +191,12 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
     
     INSERT INTO WandShop (wand_name, wand_cost)
     VALUES
-        ('Aspen wood with a unicorn core 12"" and surprisingly swishy flexibility', 300),
-        ('Maple wood with a phoenix core 12½"" and rigid flexibility', 300),
-        ('Ash wood with a phoenix core 12¼"" and quite bendy flexibility', 300),
-        ('Silver lime wood with a unicorn core 14½"" and surprisingly swishy flexibility', 300),
-        ('Cherry wood with a dragon core 12½"" and slightly yielding flexibility', 300),
-        ('Ebony wood with a dragon core 12"" and hard flexibility', 300);
+        ('Aspen wood with a unicorn core 12" and surprisingly swishy flexibility', 300),
+        ('Maple wood with a phoenix core 12½" and rigid flexibility', 300),
+        ('Ash wood with a phoenix core 12¼" and quite bendy flexibility', 300),
+        ('Silver lime wood with a unicorn core 14½" and surprisingly swishy flexibility', 300),
+        ('Cherry wood with a dragon core 12½" and slightly yielding flexibility', 300),
+        ('Ebony wood with a dragon core 12" and hard flexibility', 300);
     
     INSERT INTO PotionShop (potion_id, potion_name, potion_description, potion_cost, potion_damage, potion_heal)
     VALUES

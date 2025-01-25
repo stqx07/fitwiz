@@ -1,3 +1,10 @@
+body {
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .btn-primary {
     border: none; /* Remove border for primary buttons */
 }

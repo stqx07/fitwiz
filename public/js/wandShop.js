@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
   const skillpointsElement = document.getElementById("skillpoints");
   const wandList = document.querySelector(".row.g-4");
 

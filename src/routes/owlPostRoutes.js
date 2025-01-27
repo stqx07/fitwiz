@@ -4,6 +4,7 @@
 const express = require("express");
 const owlPostController = require("../controllers/owlPostController.js");
 const userController = require("../controllers/userController.js");
+const jwtMiddleware = require("../middlewares/jwtMiddleware");
 
 // ##############################################################
 // CREATE ROUTER
@@ -16,6 +17,7 @@ const router = express.Router();
 
 // Section B Task 21 (Submit new review)
 router.post("/:userId", 
+  jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists
   owlPostController.submitReview // Submit review
 );
@@ -25,6 +27,7 @@ router.get("/", owlPostController.getAllReview);
 
 // Section B Task 23 (Retrieve review for a specific user)
 router.get("/", 
+  jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists
   owlPostController.getUserReview // Retrieve review for the user 
 );
@@ -32,6 +35,7 @@ router.get("/",
 // Section B Task 24 (Update existing review)
 router.put(
   "/:userId",
+  jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists 
   owlPostController.checkReviewExistence, // Ensure review exists
   owlPostController.checkUserOwnership, // Ensure user owns the review
@@ -39,7 +43,11 @@ router.put(
 ); 
 
 // Section B Task 25 (Delete review)
-router.delete("/:reviewId", owlPostController.deleteReview);
+router.delete(
+  "/:reviewId", 
+  jwtMiddleware.verifyToken,
+  owlPostController.deleteReview
+);
 
 // ##############################################################
 // EXPORT ROUTER

@@ -3,6 +3,7 @@
 // ##############################################################
 const express = require("express");
 const controller = require("../controllers/diagonAlleyController.js");
+const jwtMiddleware = require("../middlewares/jwtMiddleware");
 
 // ##############################################################
 // CREATE ROUTER
@@ -19,6 +20,7 @@ router.get("/wandShop", controller.getAllWandsInShop);
 // Section B Task 2 (Purchase a wand by providing wandId and userId in the URL)
 router.post(
   "/wandShop/purchase",
+  jwtMiddleware.verifyToken,
   controller.validateWandPurchase, // Validation before purchase of wand
   controller.completeWandPurchase  // For completion of wand purchase
 );
@@ -29,6 +31,7 @@ router.get("/potionShop", controller.getAllPotionsInShop);
 // Section B Task 4 (Purchase a potion by providing potionId and userId in the URL)
 router.post(
   "/potionShop/purchase",
+  jwtMiddleware.verifyToken,
   controller.validatePotionPurchase, // Validation before purchase of potion
   controller.completePotionPurchase  // For completion of potion purchase
 );
@@ -39,6 +42,7 @@ router.get("/spellShop", controller.getAllSpellsInShop);
 // Section B Task 6 (Purchase a spell by providing spellId and userId in the URL)
 router.post(
   "/spellShop/purchase",
+  jwtMiddleware.verifyToken,
   controller.validateSpellPurchase, // Validation before purchase of spell
   controller.completeSpellPurchase  // For completion of spell purchase
 );  

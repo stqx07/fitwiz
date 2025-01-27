@@ -4,6 +4,7 @@
 const express = require("express");
 const duelController = require("../controllers/duelController");
 const userController = require("../controllers/userController");
+const jwtMiddleware = require("../middlewares/jwtMiddleware");
 
 // ##############################################################
 // CREATE ROUTER
@@ -20,6 +21,7 @@ router.get("/creatures", duelController.readAllCreatures);
 // Section B Task 12 (Start a duel by checking prerequisites and initiating the duel)
 router.post(
   "/start",
+  jwtMiddleware.verifyToken,
   duelController.checkDuplicateDuel, // Check if there's an ongoing duel
   duelController.checkUserEligibility, // Verify user has required items and skillpoints
   duelController.deductInitialSkillpoints, // Deduct initial skillpoints
@@ -29,6 +31,7 @@ router.post(
 
 // Section B Task 13 (Attack during a duel by calculating damage and updating outcomes)
 router.post("/attack",
+  jwtMiddleware.verifyToken,
   duelController.readDuelById, // Retrieve duel details by duelId
   duelController.readDamageItemId, // Retrieve damage item IDs (potion/spell) from user's vault
   duelController.readDamageValuePotion, // Retrieve potion damage and heal values

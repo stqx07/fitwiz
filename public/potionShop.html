@@ -90,81 +90,12 @@
           <p class="lead">Purchase powerful potions to unleash damage on your foes or restore your health during intense duels.</p>
         </header>
   
-        <div class="row g-4 justify-content-center">
-          <!-- Potion Card 1 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/potion1.webp" alt="Potion" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Cure for Boils</h5>
-                <p class="card-text">A potion which removes boils, such as those produced by the Pimple Jinx.</p>
-                <p class="card-text"><strong>Potion ID:</strong> 1 | <strong>Heal:</strong> 40 Health | <strong>Cost:</strong> 64 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Potion Card 2 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/potion2.webp" alt="Potion" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Wiggenweld Potion</h5>
-                <p class="card-text">A healing potion with the power to sterilise and heal minor injuries, and was the antidote to the Sleeping Draught and the Draught of Living Death.</p>
-                <p class="card-text"><strong>Potion ID:</strong> 2 | <strong>Heal:</strong> 50 Health | <strong>Cost:</strong> 80 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Potion Card 3 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/potion3.webp" alt="Potion" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Essence of Dittany</h5>
-                <p class="card-text">A magical solution that possesses powerful curative properties, which could be used on open shallow wounds for immediate healing and skin regeneration.</p>
-                <p class="card-text"><strong><strong>Potion ID:</strong> 3 | Heal:</strong> 75 Health | <strong>Cost:</strong> 120 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Potion Card 4 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/potion4.webp" alt="Potion" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dizziness Draught</h5>
-                <p class="card-text">A potion that provokes a sensation of lightheadedness and loss of balance on the drinker.</p>
-                <p class="card-text"><strong>Potion ID:</strong> 4 | <strong>Damage:</strong> 20 Damage | <strong>Cost:</strong> 32 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Potion Card 5 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/potion5.webp" alt="Potion" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Confusion Concoction</h5>
-                <p class="card-text">A potion which causes confusion in the drinker.</p>
-                <p class="card-text"><strong>Potion ID:</strong> 5 | <strong>Damage:</strong> 30 Damage | <strong>Cost:</strong> 48 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Potion Card 6 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/potion6.webp" alt="Potion" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Weakness Potion</h5>
-                <p class="card-text">A potion whose fumes induced weakness, both physically and mentally.</p>
-                <p class="card-text"><strong>Potion ID:</strong> 6 | <strong>Damage:</strong> 50 Damage | <strong>Cost:</strong> 80 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
+        <!-- Dynamic Potion List -->
+        <div class="row g-4 justify-content-center" id="potionList">
+          <!-- JavaScript will dynamically populate potions here -->
         </div>
-      </div>      
+      </div>
+    </div>
 
   <!-- Floating Review Icon -->
   <div class="floating-review" data-bs-toggle="tooltip" data-bs-placement="top" title="Rate your experience: Leave a Review!" onclick="window.location.href='owlPost.html'" style="background-color: rgb(88,92,252);">
@@ -195,5 +126,6 @@
   <script src="js/queryCmds.js" type="text/javascript"></script>
   <script src="js/getCurrentURL.js" type="text/javascript"></script>
   <script src="js/userNavbarToggle.js" type="text/javascript"></script>
+  <script src="js/potionShop.js" type="text/javascript"></script>
 </body>
 </html>

@@ -90,75 +90,12 @@
           <p class="lead">Choose the perfect wand to suit your magical needs.</p>
         </header>
   
-        <div class="row g-4 justify-content-center">
-          <!-- Wand Card 1 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/wand1.png" alt="Wand" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Aspen wood with a unicorn core 12" and surprisingly swishy flexibility.</h5>
-                <p class="card-text"><strong>Wand ID:</strong> 1 | <strong>Cost:</strong> 300 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Wand Card 2 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/wand2.png" alt="Wand" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Maple wood with a phoenix core 12½" and rigid flexibility.</h5>
-                <p class="card-text"><strong>Wand ID:</strong> 2 | <strong>Cost:</strong> 300 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Wand Card 3 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/wand3.png" alt="Wand" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Ash wood with a phoenix core 12¼" and quite bendy flexibility.</h5>
-                <p class="card-text"><strong>Wand ID:</strong> 3 | <strong>Cost:</strong> 300 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Wand Card 4 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/wand4.png" alt="Wand" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Silver lime wood with a unicorn core 14½" and surprisingly swishy flexibility.</h5>
-                <p class="card-text"><strong>Wand ID:</strong> 4 | <strong>Cost:</strong> 300 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Wand Card 5 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/wand5.png" alt="Wand" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Cherry wood with a dragon core 12½" and slightly yielding flexibility.</h5>
-                <p class="card-text"><strong>Wand ID:</strong> 5 | <strong>Cost:</strong> 300 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
-          <!-- Wand Card 6 -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 mx-auto">
-              <img src="images/wand6.png" alt="Wand" class="card-img-top">
-              <div class="card-body text-center">
-                <h5 class="card-title">Ebony wood with a dragon core 12" and hard flexibility.</h5>
-                <p class="card-text"><strong>Wand ID:</strong> 6 | <strong>Cost:</strong> 300 Skillpoints</p>
-                <button class="btn btn-primary">Buy</button>
-              </div>
-            </div>
-          </div>
+        <!-- Dynamic Wand List -->
+        <div class="row g-4 justify-content-center" id="wandList">
+          <!-- JavaScript will dynamically populate wands here -->
         </div>
-      </div>      
+      </div>
+    </div> 
 
   <!-- Quote Section-->
   <div class="container d-flex flex-column align-items-center mb-5">
@@ -202,5 +139,6 @@
   <script src="js/queryCmds.js" type="text/javascript"></script>
   <script src="js/getCurrentURL.js" type="text/javascript"></script>
   <script src="js/userNavbarToggle.js" type="text/javascript"></script>
+  <script src="js/wandShop.js" type="text/javascript"></script>
 </body>
 </html>

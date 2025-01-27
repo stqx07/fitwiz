@@ -19,7 +19,6 @@ const tokenAlgorithm = process.env.JWT_ALGORITHM;
 // MIDDLEWARE FUNCTION FOR GENERATING JWT TOKEN
 //////////////////////////////////////////////////////
 module.exports.generateToken = (req, res, next) => {
-  console.log(res.locals);
   const payload = {
     userId: res.locals.user_id,
     timestamp: new Date(),
@@ -82,10 +81,6 @@ module.exports.verifyToken = (req, res, next) => {
     
     res.locals.user_id = decoded.userId;
     res.locals.tokenTimestamp = decoded.timestamp;
-    if (req.body.item_type && req.body.item_name) {
-      res.locals.item_name = req.body.item_name;
-      res.locals.item_type = req.body.item_type;
-    }
     next();
   };
 

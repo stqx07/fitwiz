@@ -23,7 +23,7 @@ module.exports.getAllWandsInShop = (req, res, next) => {
 module.exports.validateWandPurchase = (req, res, next) => {
   const data = {
       wand_id: req.body.wandId,
-      user_id: req.body.userId,
+      user_id: res.locals.user_id,
   };
 
   const callback = (error, results) => {
@@ -38,7 +38,7 @@ module.exports.validateWandPurchase = (req, res, next) => {
     }
     if (results[1].length === 0) {
         return res.status(404).json({
-            message: "User not found!",
+            message: "User not found!", 
         });
     }
     if (results[2].length > 0) {
@@ -106,7 +106,7 @@ module.exports.getAllPotionsInShop = (req, res, next) => {
 module.exports.validatePotionPurchase = (req, res, next) => {
   const data = {
       potion_id: req.body.potionId,
-      user_id: req.body.userId,
+      user_id: res.locals.user_id,
   };
 
   const callback = (error, results) => {
@@ -182,7 +182,7 @@ module.exports.getAllSpellsInShop = (req, res, next) => {
 module.exports.validateSpellPurchase = (req, res, next) => {
   const data = {
       spell_id: req.body.spellId,
-      user_id: req.body.userId,
+      user_id: res.locals.user_id,
   };
 
   const callback = (error, results) => {

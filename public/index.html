@@ -90,36 +90,44 @@
     </div>
   </div>
 
-  <!-- Leaderboard Section -->
-  <div id="leaderboardSection" class="container py-4 mb-5 border" style="background-color: rgba(0,0,27,0.5); border-radius: 1.2rem;">
-    <h2 class="text-center text-white mb-4">Leaderboard</h2>
-    <p class="text-center text-white mb-4">
-      "Every spell cast, every duel fought, every quest completed—your magical journey is immortalized here. 
-      Rise to the top and make your house proud!"
-    </p>
-    <!-- Tabs -->
-    <ul class="nav nav-tabs custom-tabs justify-content-center mb-4" id="leaderboardTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active hover-opacity" id="user-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#user-leaderboard" type="button" role="tab" aria-controls="user-leaderboard" aria-selected="true">User Leaderboard</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link hover-opacity" id="house-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#house-leaderboard" type="button" role="tab" aria-controls="house-leaderboard" aria-selected="false">House Leaderboard</button>
-      </li>
-    </ul>
+<!-- Leaderboard Section -->
+<div id="leaderboardSection" class="container py-4 mb-5 border" style="background-color: rgba(0,0,27,0.5); border-radius: 1.2rem;">
+  <h2 class="text-center text-white mb-4">Leaderboard</h2>
+  <p class="text-center text-white mb-4">
+    "Every spell cast, every duel fought, every quest completed—your magical journey is immortalized here. 
+    Rise to the top and make your house proud!"
+  </p>
   
-    <div class="tab-content" id="leaderboardTabsContent">
-      <!-- User Leaderboard -->
-      <div class="tab-pane fade show active" id="user-leaderboard" role="tabpanel" aria-labelledby="user-leaderboard-tab">
-        <h4 class="text-center text-white mb-4">Top 10 Users</h4>
-        <div class="d-flex justify-content-center mb-4">
-          <select class="filter form-select w-auto" id="houseFilter" aria-label="Filter by House">
+  <!-- Tabs -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 col-md-8">
+      <ul class="nav nav-tabs custom-tabs" id="leaderboardTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active hover-opacity" id="user-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#user-leaderboard" type="button" role="tab" aria-controls="user-leaderboard" aria-selected="true">User Leaderboard</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link hover-opacity" id="house-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#house-leaderboard" type="button" role="tab" aria-controls="house-leaderboard" aria-selected="false">House Leaderboard</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content" id="leaderboardTabsContent">
+    <!-- User Leaderboard -->
+    <div class="tab-pane fade show active" id="user-leaderboard" role="tabpanel" aria-labelledby="user-leaderboard-tab">
+      <h4 class="text-center text-white mb-4">Top 10 Users</h4>
+      <div class="row justify-content-center mb-4">
+        <div class="col-12 col-sm-4 mx-auto">
+          <select class="filter form-select form-select text-center" id="houseFilter" aria-label="Filter by House" style="text-align-last: center; max-width: 200px; margin: auto;">
             <option selected value="all">All Users</option>
-            <option value="gryffindor">Gryffindor</option>
-            <option value="hufflepuff">Hufflepuff</option>
-            <option value="ravenclaw">Ravenclaw</option>
-            <option value="slytherin">Slytherin</option>
+            <option value="1">Gryffindor</option>
+            <option value="2">Hufflepuff</option>
+            <option value="3">Ravenclaw</option>
+            <option value="4">Slytherin</option>
           </select>
-        </div>
+        </div>        
+      </div>
+      <div class="table-responsive">
         <table class="table table-dark table-striped table-hover text-center align-middle">
           <thead>
             <tr>
@@ -132,29 +140,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="hover-opacity">
-              <td>1</td>
-              <td>Harry Potter</td>
-              <td>15</td>
-              <td>10</td>
-              <td>8</td>
-              <td>1200</td>
-            </tr>
-            <tr class="hover-opacity">
-              <td>2</td>
-              <td>Hermione Granger</td>
-              <td>20</td>
-              <td>12</td>
-              <td>10</td>
-              <td>1500</td>
-            </tr>
+            <!-- JavaScript will dynamically populate rows here -->
           </tbody>
         </table>
       </div>
-  
-      <!-- House Leaderboard -->
-      <div class="tab-pane fade" id="house-leaderboard" role="tabpanel" aria-labelledby="house-leaderboard-tab">
-        <h4 class="text-center text-white mb-4">Top Houses</h4>
+    </div>
+
+    <!-- House Leaderboard -->
+    <div class="tab-pane fade" id="house-leaderboard" role="tabpanel" aria-labelledby="house-leaderboard-tab">
+      <h4 class="text-center text-white mb-4">Top Houses</h4>
+      <div class="table-responsive">
         <table class="table table-dark table-striped table-hover text-center align-middle">
           <thead>
             <tr>
@@ -164,31 +159,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="hover-opacity">
-              <td>1</td>
-              <td>Gryffindor</td>
-              <td>5000</td>
-            </tr>
-            <tr class="hover-opacity">
-              <td>2</td>
-              <td>Slytherin</td>
-              <td>4500</td>
-            </tr>
-            <tr class="hover-opacity">
-              <td>3</td>
-              <td>Ravenclaw</td>
-              <td>4000</td>
-            </tr>
-            <tr class="hover-opacity">
-              <td>4</td>
-              <td>Hufflepuff</td>
-              <td>3500</td>
-            </tr>
+            <!-- JavaScript will dynamically populate rows here -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
+</div>
 
   <!-- About the Application Section -->
   <div class="container py-4 mb-5 mt-4 border" style="background-color: rgba(0,0,27,0.5); border-radius: 1.2rem;">
@@ -337,5 +314,6 @@
   <script src="js/queryCmds.js" type="text/javascript"></script>
   <script src="js/getCurrentURL.js" type="text/javascript"></script>
   <script src="js/userNavbarToggle.js" type="text/javascript"></script>
+  <script src="js/leaderboard.js" type="text/javascript"></script>
 </body>
 </html>

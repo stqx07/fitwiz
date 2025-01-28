@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Callback for purchase response
   const callbackForPurchase = (responseStatus, responseData) => {
     if (responseStatus === 200) {
-      showMessageCard("Spell purchased successfully!", "success");
+      showMessageCard("Wand purchased successfully!", "success");
       skillpointsElement.textContent = responseData.updatedSkillpoints;
     } else if (responseStatus === 400 || responseStatus === 403) {
       const errorMessage = responseData?.message || "Unable to complete the purchase.";

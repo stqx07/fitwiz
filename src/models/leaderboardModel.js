@@ -60,7 +60,7 @@ module.exports.selectHouseLeaderboard = (callback) => {
         SELECT 
             HogwartsHouse.house_id,
             HogwartsHouse.house_name,
-            SUM(User.skillpoints) AS total_skillpoints
+            COALESCE(SUM(User.skillpoints), 0) AS total_skillpoints
         FROM HogwartsHouse
         LEFT JOIN UserHouse ON HogwartsHouse.house_id = UserHouse.house_id
         LEFT JOIN User ON UserHouse.user_id = User.user_id

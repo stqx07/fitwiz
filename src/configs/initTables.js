@@ -41,7 +41,7 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         username TEXT NOT NULL,
         email TEXT NOT NULL,
         password TEXT NOT NULL,
-        skillpoints INT,
+        skillpoints INT NOT NULL DEFAULT 0,
         user_health INT NOT NULL DEFAULT 100
     );
     

@@ -7,7 +7,7 @@ const model = require("../models/vaultModel.js");
 // DEFINE CONTROLLER FUNCTION TO RETRIEVE ALL ITEMS IN USER'S VAULT (Section B Task 7)
 // ###################################################################################
 module.exports.getAllItemsInVaultById = (req, res, next) => {
-  const userId = req.body.userId;  
+  const userId = res.locals.user_id;  
   if (!userId) {
       res.status(400).json({
           message: "userId is undefined.",
@@ -43,7 +43,7 @@ module.exports.getAllItemsInVaultById = (req, res, next) => {
 // DEFINE CONTROLLER FUNCTION TO RETRIEVE ALL WANDS IN USER'S VAULT (Section B Task 8)
 // ###################################################################################
 module.exports.getAllWandsInVault = (req, res, next) => {
-  const userId = req.body.userId;  
+  const userId = res.locals.user_id;  
   if (!userId) {
       res.status(400).json({
           message: "userId is undefined.",
@@ -77,7 +77,7 @@ module.exports.getAllWandsInVault = (req, res, next) => {
 // DEFINE CONTROLLER FUNCTION TO RETRIEVE ALL POTIONS IN USER'S VAULT (Section B Task 9)
 // #####################################################################################
 module.exports.getAllPotionsInVault = (req, res, next) => {
-  const userId = req.body.userId;  
+  const userId = res.locals.user_id;  
   if (!userId) {
       res.status(400).json({
           message: "userId is undefined.",
@@ -111,7 +111,7 @@ module.exports.getAllPotionsInVault = (req, res, next) => {
 // DEFINE CONTROLLER FUNCTION TO RETRIEVE ALL SPELLS IN USER'S VAULT (Section B Task 10)
 // #####################################################################################
 module.exports.getAllSpellsInVault = (req, res, next) => {
-  const userId = req.body.userId;  
+  const userId = res.locals.user_id;  
   if (!userId) {
       res.status(400).json({
           message: "userId is undefined.",

@@ -30,8 +30,6 @@ module.exports.login = (req, res, next) => {
           message: "User not found!",
         });
       } else {
-        console.log(results[0]);
-
         res.locals.user_id = results[0].user_id;
         res.locals.hash = results[0].password;
         res.locals.user = results[0][2];
@@ -189,7 +187,7 @@ module.exports.readAllUsers = (req, res, next) => {
 // ##################################################################################################################################################################################################################################################################################################################################
 module.exports.checkUserById = (req, res, next) => {
   // Determine `user_id` based on the route structure
-  const user_id = req.params.user_id || req.params.userId || req.body.user_id || req.body.userId;
+  const user_id = req.params.user_id || req.params.userId || req.body.user_id || req.body.userId || res.locals.user_id;
 
   if (!user_id) {
     res.status(400).json({
@@ -236,7 +234,7 @@ module.exports.checkUserById = (req, res, next) => {
         res.locals.challenge = req.body.challenge;
         res.locals.skillpoints = req.body.skillpoints;
         next();
-      } else if (req.route.path === "/:userId" && req.method === "GET") {
+      } else if (req.route.path === "/" && req.method === "GET") {
         res.status(200).json(results[0]);
       } else {
         next();

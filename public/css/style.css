@@ -10,7 +10,6 @@ body {
 }
 
 .custom-card {
-    border: none; /* Remove border for cards */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for scaling and shadow effects */
     margin: auto; /* Center cards horizontally */
 }

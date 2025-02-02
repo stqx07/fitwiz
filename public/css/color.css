@@ -22,14 +22,16 @@
 }
 
 .custom-card {
-    /* Card styles for custom components */
+    /* Card styles */
     background-color: var(--custom-card-bg-color) !important;
-    color: var(--custom-card-text-color) !important;
+    color: var(--custom-text-color) !important;
+    border: 2px solid var(--custom-border-color); /* Add border color */
 }
 
 .custom-card:hover {
-    /* Add shadow effect on card hover */
-    box-shadow: 0 8px 15px var(--custom-card-hover-shadow) !important;
+    /* Card styles on hover */
+    box-shadow: 0 8px 15px var(--custom-card-hover-shadow) !important; /* Add shadow effect on card hover */
+    border-color: var(--custom-color); /* Use primary color on hover */
 }
 
 .custom-header {

@@ -15,7 +15,7 @@ const router = express.Router();
 // ##############################################################
 
 // Section B Task 31 (Retrieve activity history for a user)
-router.get("/userActivityHistory/:userId",
+router.get("/userActivityHistory",
   jwtMiddleware.verifyToken,
   controller.checkUserById, // Ensure the user exists
   controller.getUserActivityHistory // Fetch user activity history
@@ -23,7 +23,7 @@ router.get("/userActivityHistory/:userId",
 
 // Section B Task 32 (Retrieve user details by providing user_id)
 router.get(
-  "/:userId", 
+  "/", 
   jwtMiddleware.verifyToken,
   controller.checkUserById
 );

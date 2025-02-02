@@ -256,7 +256,7 @@ module.exports.validateChallengeId = (req, res, next) => {
         });
       } else {
         res.locals.challenge_id = challenge_id;
-        res.locals.user_id = req.body.user_id;
+        res.locals.user_id = res.locals.user_id;
         res.locals.creation_date = req.body.creation_date;
         res.locals.completion = req.body.completed;
         res.locals.notes = req.body.notes;

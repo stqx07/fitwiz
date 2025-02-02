@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   };
 
+  // Fetch and update user skillpoints dynamically
+  const callbackForUserSkillpoints = (responseStatus, responseData) => {
+    if (responseStatus === 200) {
+      skillpointsElement.textContent = responseData.skillpoints || "0";
+    } else {
+      showMessageCard("Failed to load skillpoints.", "danger");
+    }
+  };
+  
   // Callback to populate wand shop
   const callbackForWands = (responseStatus, responseData) => {
     if (responseStatus === 200) {
@@ -73,7 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const callbackForPurchase = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       showMessageCard("Wand purchased successfully!", "success");
-      skillpointsElement.textContent = responseData.updatedSkillpoints;
+      // Fetch updated skillpoints immediately after purchase
+      fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
     } else if (responseStatus === 400 || responseStatus === 403) {
       const errorMessage = responseData?.message || "Unable to complete the purchase.";
       showMessageCard(errorMessage, "warning");
@@ -83,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Fetch wands on page load
+  // Fetch wands and skillpoints on page load
   fetchMethod(`${currentUrl}/api/diagonAlley/wandShop`, callbackForWands, "GET", null, token);
+  fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
 });

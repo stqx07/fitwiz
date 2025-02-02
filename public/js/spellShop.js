@@ -19,9 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   };
 
-  const showPermanentMessage = (elementId, message, type) => {
-    const element = document.getElementById(elementId);
-    element.innerHTML = `<div class="alert alert-${type} col-xl-4 col-lg-6 col-md-12 p-3 mx-auto">${message}</div>`;
+  // Fetch and update user skillpoints dynamically
+  const callbackForUserSkillpoints = (responseStatus, responseData) => {
+    if (responseStatus === 200) {
+      skillpointsElement.textContent = responseData.skillpoints || "0";
+    } else {
+      showMessageCard("Failed to load skillpoints.", "danger");
+    }
   };
 
   // Callback to populate spell shop
@@ -80,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const callbackForPurchase = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       showMessageCard("Spell purchased successfully!", "success");
-      skillpointsElement.textContent = responseData.updatedSkillpoints;
+      // Fetch updated skillpoints immediately after purchase
+      fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
     } else if (responseStatus === 400 || responseStatus === 403) {
       const errorMessage = responseData?.message || "Unable to complete the purchase.";
       showMessageCard(errorMessage, "warning");
@@ -90,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Fetch spells on page load
+  // Fetch spells and skillpoints on page load
   fetchMethod(`${currentUrl}/api/diagonAlley/spellShop`, callbackForSpells, "GET", null, token);
+  fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
 }); 

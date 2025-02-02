@@ -121,3 +121,13 @@ body {
 .message-card.fade-out {
     opacity: 0; /* Makes the card fully transparent */
 }
+
+/* Styling for "No activity history found." message */
+.no-activity-message {
+    text-align: center !important;
+    font-style: italic !important;
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+    color: #ffcc00 !important;
+    padding: 15px 0 !important;
+}

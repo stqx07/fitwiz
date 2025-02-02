@@ -16,7 +16,7 @@ const router = express.Router();
 // ##############################################################
 
 // Section B Task 16 (Retrieve all Hogwarts houses)
-router.get("/", houseController.getAllHouses);
+router.get("/allHouses", houseController.getAllHouses);
 
 // Section B Task 17 (Allow user to choose their Hogwarts house)
 router.post(
@@ -29,7 +29,7 @@ router.post(
 );
 
 // Section B Task 18 (Retrieve user's house by userId)
-router.get("/:userId",
+router.get("/",
   jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists
   houseController.getUserHouse // Get user's house details

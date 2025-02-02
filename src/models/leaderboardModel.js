@@ -46,7 +46,8 @@ module.exports.selectUserLeaderboard = (data, callback) => {
     
     SQLSTATEMENT += `
         GROUP BY u.user_id
-        ORDER BY u.skillpoints DESC;
+        ORDER BY u.skillpoints DESC
+        LIMIT 10;
     `;
 
     pool.query(SQLSTATEMENT, VALUES, callback);

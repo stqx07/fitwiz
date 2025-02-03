@@ -25,7 +25,7 @@ module.exports.readAllCreatures = (req, res, next) => {
 // DEFINE CONTROLLER FUNCTION TO CHECK FOR DUPLICATE DUELS (Section B Task 12)
 // ###########################################################################
 module.exports.checkDuplicateDuel = (req, res, next) => {
-  const userId = req.body.userId;
+  const userId = res.locals.user_id;
   const creatureId = req.body.creatureId;
   if (!userId || !creatureId) {
     res.status(400).json({
@@ -45,7 +45,7 @@ module.exports.checkDuplicateDuel = (req, res, next) => {
         message: "User already has an ongoing duel. Please complete it before starting a new one.",
       });
     } else {
-      res.locals.userId = req.body.userId;
+      res.locals.userId = res.locals.user_id;
       res.locals.creatureId = req.body.creatureId;
       next();
     }

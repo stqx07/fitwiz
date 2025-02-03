@@ -95,99 +95,16 @@
       <div class="tab-content">
         <!-- Creatures Available for Duel -->
         <div id="creaturesTab" class="container tab-pane active"><br>
-          <div class="row g-4 justify-content-center">
-            <!-- Creature Card 1 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded">
-                <img src="images/doxy.webp" alt="Doxy" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Doxy</h5>
-                  <p class="card-text">A small, venomous creature resembling a fairy with sharp teeth and a nasty bite.</p>
-                  <p class="card-text"><strong>Creature Health:</strong> 100 | <strong>Reward:</strong> 40 Skillpoints</p>
-                  <button class="btn btn-primary mb-4">Duel</button>
-                </div>
-              </div>
-            </div>
-            <!-- Creature Card 2 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded">
-                <img src="images/chimaera.webp" alt="Chimaera" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Chimaera</h5>
-                  <p class="card-text">A vicious hybrid beast with the head of a lion, body of a goat, and tail of a dragon.</p>
-                  <p class="card-text"><strong>Creature Health:</strong> 130 | <strong>Reward:</strong> 52 Skillpoints</p>
-                  <button class="btn btn-primary mb-4">Duel</button>
-                </div>
-              </div>
-            </div>
-            <!-- Creature Card 3 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded">
-                <img src="images/nightmare-thestral.jpg" alt="Nightmare Thestral" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Nightmare Thestral</h5>
-                  <p class="card-text">A mutated Thestral, strengthened by dark magic.</p>
-                  <p class="card-text"><strong>Creature Health:</strong> 150 | <strong>Reward:</strong> 60 Skillpoints</p>
-                  <button class="btn btn-primary mb-4">Duel</button>
-                </div>
-              </div>
-            </div>
-            <!-- Creature Card 4 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded">
-                <img src="images/werewolf.webp" alt="Werewolf" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Werewolf</h5>
-                  <p class="card-text">A human cursed to transform into a ferocious wolf under a full moon.</p>
-                  <p class="card-text"><strong>Creature Health:</strong> 175 | <strong>Reward:</strong> 70 Skillpoints</p>
-                  <button class="btn btn-primary mb-4">Duel</button>
-                </div>
-              </div>
-            </div>
-            <!-- Creature Card 5 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded">
-                <img src="images/basilisk.webp" alt="Basilisk" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Basilisk</h5>
-                  <p class="card-text">A giant serpent with deadly eyes and venomous fangs.</p>
-                  <p class="card-text"><strong>Creature Health:</strong> 200 | <strong>Reward:</strong> 80 Skillpoints</p>
-                  <button class="btn btn-primary mb-4">Duel</button>
-                </div>
-              </div>
-            </div>
-            <!-- Creature Card 6 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded">
-                <img src="images/dragon.webp" alt="Dragon" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Dragon</h5>
-                  <p class="card-text">A powerful, fire-breathing creature with impenetrable scales.</p>
-                  <p class="card-text"><strong>Creature Health:</strong> 250 | <strong>Reward:</strong> 100 Skillpoints</p>
-                  <button class="btn btn-primary mb-4">Duel</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="row g-4 justify-content-center" id="creatureList">
+          <!-- JavaScript will dynamically populate creatures here -->
         </div>
-      
+      </div>
+    </div>
+
         <!-- All Duels -->
         <div id="allDuelsTab" class="container tab-pane fade"><br>
-          <div class="row g-4 justify-content-center">
-            <!-- Duel Card 1 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="custom-card h-100 rounded shadow-sm p-3">
-                <div class="card-body text-center">
-                  <h5 class="card-title mb-3">Duel ID: 1</h5>
-                  <p class="card-text mb-2"><strong>Message:</strong> In Progress</p>
-                  <p class="card-text mb-2"><strong>User Health:</strong> 80</p>
-                  <p class="card-text mb-2"><strong>Creature Health:</strong> 120</p>
-                  <p class="card-text mb-2"><strong>Skillpoints Gained:</strong> 0</p>
-                  <p class="card-text mb-3"><strong>Skillpoints Deducted:</strong> 0</p>
-                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#duelModal">View Duel</button>
-                </div>
-              </div>
-            </div>
+          <div class="row g-4 justify-content-center" id="duelList">
+          <!-- JavaScript will dynamically populate duels here -->
           </div>
         </div>
         
@@ -196,39 +113,38 @@
           <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content bg-dark text-white">
               <div class="modal-header">
-                <h5 class="modal-title text-center w-100" id="duelModalLabel1">Duel ID: 1</h5>
+                <h5 class="modal-title text-center w-100" id="duelModalLabel1">Duel ID: <span id="duelIdText"></span></h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <p class="text-center">
-                  Engage in your ongoing duel. Use the "Attack" button below to unleash your magical attack!                </p>
+                  Engage in your ongoing duel. Use the "Attack" button below to unleash your magical attack!
+                </p>
                 <div class="row justify-content-center">
                   <!-- Duel Info Card -->
                   <div class="col-md-12 col-lg-8 mb-4">
                     <div class="card bg-dark text-white shadow-sm border border-white">
                       <div class="card-body text-center">
                         <h5 class="card-title mb-3">Duel Details</h5>
-                        <p class="card-text"><strong>Message:</strong> In Progress</p>
-                        <p class="card-text"><strong>User Health:</strong> 100</p>
-                        <p class="card-text"><strong>Creature Health:</strong> 100</p>
-                        <p class="card-text"><strong>Creature ID:</strong> 1</p>
-                        <p class="card-text"><strong>Creature Name:</strong> Doxy</p>
-                        <p class="card-text"><strong>Skillpoints Gained:</strong> 0</p>
-                        <p class="card-text"><strong>Skillpoints Deducted:</strong> 0</p>
+                        <p class="card-text"><strong>Message:</strong> <span id="duelMessage"></span></p>
+                        <p class="card-text"><strong>User Health:</strong> <span id="userHealth"></span></p>
+                        <p class="card-text"><strong>Creature Health:</strong> <span id="creatureHealth"></span></p>
+                        <p class="card-text"><strong>Creature ID:</strong> <span id="creatureId"></span></p>
+                        <p class="card-text"><strong>Skillpoints Gained:</strong> <span id="skillpointsGained"></span></p>
+                        <p class="card-text"><strong>Skillpoints Deducted:</strong> <span id="skillpointsDeducted"></span></p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-primary w-100">Attack</button>
+                <button id="attackButton" class="btn btn-primary w-100">Attack</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Floating Review Icon -->
   <div class="floating-review" data-bs-toggle="tooltip" data-bs-placement="top" title="Rate your experience: Leave a Review!" onclick="window.location.href='owlPost.html'" style="background-color: rgb(88,92,252);">
@@ -259,5 +175,6 @@
   <script src="js/queryCmds.js" type="text/javascript"></script>
   <script src="js/getCurrentURL.js" type="text/javascript"></script>
   <script src="js/userNavbarToggle.js" type="text/javascript"></script>
+  <script src="js/duel.js" type="text/javascript"></script>
 </body>
 </html>

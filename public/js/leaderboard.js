@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
           <td>${user.username}</td>
           <td>${user.challenges_completed}</td>
           <td>${user.duels_won}</td>
-          <td>${user.quests_completed}</td>
           <td>${user.skillpoints}</td>
         `;
         userLeaderboardTable.appendChild(row);

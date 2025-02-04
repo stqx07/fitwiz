@@ -170,9 +170,16 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
     -- Insert required data
     INSERT INTO User (user_id, username, email, password, skillpoints, user_health)
     VALUES 
-        (1, 'HarryPotter', 'harrypotter@example.com', '${hash}', 750, 100),
-        (2, 'HermioneGranger', 'hermionegranger@example.com', '${hash}', 430, 100),
-        (3, 'DracoMalfoy', 'dracomalfoy@example.com', '${hash}', 150, 100);
+        (1, 'HarryPotter', 'harrypotter@example.com', '${hash}', 1250, 100),
+        (2, 'HermioneGranger', 'hermionegranger@example.com', '${hash}', 940, 100),
+        (3, 'DracoMalfoy', 'dracomalfoy@example.com', '${hash}', 620, 100),
+        (4, 'KatieBell', 'katiebell@example.com', '${hash}', 1080, 100),
+        (5, 'SeamusFinnigan', 'seamusfinnigan@example.com', '${hash}', 520, 100),
+        (6, 'LunaLovegood', 'lunalovegood@example.com', '${hash}', 860, 100),
+        (7, 'ChoChang', 'chochang@example.com', '${hash}', 730, 100),
+        (8, 'PansyParkinson', 'pansyparkinson@example.com', '${hash}', 410, 100),
+        (9, 'DaphneGreengrass', 'daphnegreengrass@example.com', '${hash}', 670, 100),
+        (10, 'TerryBoot', 'terryboot@example.com', '${hash}', 310, 100);
     
     INSERT INTO HogwartsHouse (house_id, house_name, house_description)
     VALUES 
@@ -246,10 +253,91 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         180, 
         FALSE);
 
-    INSERT INTO Review (review_id, user_id, name, email, comment, rating, submitted_at) VALUES
+    INSERT INTO Review (review_id, user_id, name, email, comment, rating, submitted_at)
+    VALUES
         (1, 1, 'Harry Potter', 'harrypotter@example.com', 'I love the gamified features, especially the quests!', 5, '2025-01-19 10:30:00'),
         (2, 2, 'Hermione Granger', 'hermionegranger@example.com', 'Great service! The integration of themes and features is creative.', 4, '2025-01-19 10:45:00'),
         (3, 3, 'Draco Malfoy', 'dracomalfoy@example.com', 'The leaderboard is motivating, I always strive to stay at the top!', 5, '2025-01-19 11:00:00');
+
+    INSERT INTO UserHouse (user_id, house_id, sorted_at)
+    VALUES
+    (1, 1, CURRENT_TIMESTAMP),
+    (2, 1, CURRENT_TIMESTAMP),
+    (3, 4, CURRENT_TIMESTAMP),
+    (4, 1, CURRENT_TIMESTAMP),
+    (5, 1, CURRENT_TIMESTAMP),
+    (6, 3, CURRENT_TIMESTAMP),
+    (7, 3, CURRENT_TIMESTAMP),
+    (8, 4, CURRENT_TIMESTAMP),
+    (9, 4, CURRENT_TIMESTAMP),
+    (10, 3, CURRENT_TIMESTAMP);
+    
+INSERT INTO UserCompletion (challenge_id, user_id, completed, creation_date)
+VALUES
+    (1, 1, TRUE, '2025-01-20 08:00:00'),
+    (2, 1, TRUE, '2025-01-22 09:30:00'),
+    (3, 1, TRUE, '2025-01-23 07:15:00'),
+    (4, 1, TRUE, '2025-01-24 06:45:00'),
+    (5, 1, TRUE, '2025-01-25 07:30:00'),
+    (3, 1, TRUE, '2025-01-26 08:00:00'),
+
+    (1, 2, TRUE, '2025-01-20 08:00:00'),
+    (2, 2, TRUE, '2025-01-21 09:30:00'),
+    (3, 2, TRUE, '2025-01-22 07:15:00'),
+    (4, 2, TRUE, '2025-01-23 06:45:00'),
+    (5, 2, TRUE, '2025-01-24 07:30:00'),
+
+    (1, 3, TRUE, '2025-01-20 08:00:00'),
+    (2, 3, TRUE, '2025-01-21 09:30:00'),
+    (3, 3, TRUE, '2025-01-22 07:15:00'),
+    (4, 3, TRUE, '2025-01-23 06:45:00'),
+
+    (1, 4, TRUE, '2025-01-20 08:00:00'),
+    (2, 4, TRUE, '2025-01-21 09:30:00'),
+    (3, 4, TRUE, '2025-01-22 07:15:00'),
+    (4, 4, TRUE, '2025-01-23 06:45:00'),
+    (5, 4, TRUE, '2025-01-24 07:30:00'),
+    (1, 4, TRUE, '2025-01-25 08:00:00'),
+
+    (1, 5, TRUE, '2025-01-20 08:00:00'),
+    (2, 5, TRUE, '2025-01-21 09:30:00'),
+    (3, 5, FALSE, '2025-01-22 07:15:00'),
+
+    (1, 6, TRUE, '2025-01-20 08:00:00'),
+    (2, 6, TRUE, '2025-01-21 09:30:00'),
+    (3, 6, TRUE, '2025-01-22 07:15:00'),
+    (4, 6, TRUE, '2025-01-23 06:45:00'),
+    (5, 6, TRUE, '2025-01-24 07:30:00'),
+
+    (1, 7, TRUE, '2025-01-20 08:00:00'),
+    (2, 7, TRUE, '2025-01-21 09:30:00'),
+    (3, 7, TRUE, '2025-01-22 07:15:00'),
+    (4, 7, TRUE, '2025-01-23 06:45:00'),
+
+    (1, 8, TRUE, '2025-01-20 08:00:00'),
+    (2, 8, FALSE, '2025-01-21 09:30:00'),
+
+    (1, 9, TRUE, '2025-01-20 08:00:00'),
+    (2, 9, TRUE, '2025-01-21 09:30:00'),
+    (3, 9, TRUE, '2025-01-22 07:15:00'),
+
+    (1, 10, TRUE, '2025-01-20 08:00:00'),
+    (2, 10, FALSE, '2025-01-21 09:30:00');
+
+INSERT INTO Duel (user_id, creature_id, result, user_health, creature_health, skillpoints_gained, skillpoints_deducted, created_at, updated_at)
+VALUES
+    (1, 6, 'Win', 75, 0, 100, 0, '2025-01-20 15:30:00', '2025-01-20 15:30:55'),
+    (1, 5, 'Win', 50, 0, 80, 0, '2025-01-21 14:00:00', '2025-01-21 14:01:15'),
+    (2, 5, 'Win', 40, 0, 80, 0, '2025-01-22 16:45:00', '2025-01-22 16:46:20'),
+    (2, 4, 'Win', 30, 0, 70, 0, '2025-01-23 17:10:00', '2025-01-23 17:11:10'),
+    (3, 3, 'Draw', 10, 15, 10, 0, '2025-01-24 18:20:00', '2025-01-24 18:21:30'),
+    (4, 6, 'Lose', 0, 50, 0, 10, '2025-01-25 19:00:00', '2025-01-25 19:01:10'),
+    (5, 2, 'Lose', 0, 90, 0, 10, '2025-01-26 10:30:00', '2025-01-26 10:31:20'),
+    (6, 3, 'Win', 20, 0, 60, 0, '2025-01-26 13:45:00', '2025-01-26 13:46:05'),
+    (7, 1, 'Win', 50, 0, 40, 0, '2025-01-27 08:30:00', '2025-01-27 08:31:40'),
+    (8, 1, 'Lose', 0, 30, 0, 10, '2025-01-27 09:15:00', '2025-01-27 09:16:00'),
+    (9, 2, 'Win', 15, 0, 50, 0, '2025-01-27 10:00:00', '2025-01-27 10:01:15'),
+    (10, 4, 'Lose', 0, 60, 0, 10, '2025-01-27 10:45:00', '2025-01-27 10:46:30');
     `;
     
     pool.query(SQLSTATEMENT, callback);

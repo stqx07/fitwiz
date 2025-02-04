@@ -29,7 +29,7 @@ router.post(
 );
 
 // Section B Task 18 (Retrieve user's house by userId)
-router.get("/",
+router.get("/userHouse",
   jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists
   houseController.getUserHouse // Get user's house details

@@ -123,8 +123,7 @@ module.exports.getUserAssignedHouse = (req, res) => {
 // DEFINE CONTROLLER FUNCTION TO RETRIEVE USER'S HOUSE BY USER ID (Section B Task 18)
 // ##################################################################################
 module.exports.getUserHouse = (req, res, next) => {
-    const userId = req.params.userId;
-
+    const userId = res.locals.user_id;
     if (!userId) {
         res.status(400).json({
             message: "userId is undefined.",

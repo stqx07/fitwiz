@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fetchMethod(`${currentUrl}/api/houses/chooseHouse`, (responseStatus, responseData) => {
             if (responseStatus === 201) {
-                showMessageCard(`Congratulations! You are now in ${responseData.house}!`, "success", true);
+                showMessageCard(`Congratulations! You are now in ${responseData.message}!`, "success", true);
 
             // Close the modal immediately after house selection
             const houseModal = document.getElementById("houseModal");

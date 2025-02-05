@@ -110,7 +110,7 @@ module.exports.getUserAssignedHouse = (req, res) => {
         const houseName = results[0]?.house_name || "Unknown";
 
         return res.status(201).json({
-            message: `User successfully sorted into ${houseName}.`,
+            message: `${houseName}`,
             user_id: res.locals.user_id,
             house_id: res.locals.house_id,
         });

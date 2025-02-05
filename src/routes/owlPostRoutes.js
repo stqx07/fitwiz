@@ -16,7 +16,7 @@ const router = express.Router();
 // ##############################################################
 
 // Section B Task 21 (Submit new review)
-router.post("/:userId", 
+router.post("/", 
   jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists
   owlPostController.submitReview // Submit review
@@ -34,7 +34,7 @@ router.get("/",
 
 // Section B Task 24 (Update existing review)
 router.put(
-  "/:userId",
+  "/",
   jwtMiddleware.verifyToken,
   userController.checkUserById, // Ensure user exists 
   owlPostController.checkReviewExistence, // Ensure review exists
@@ -46,6 +46,7 @@ router.put(
 router.delete(
   "/:reviewId", 
   jwtMiddleware.verifyToken,
+  owlPostController.checkUserOwnership, // Ensure user owns the review
   owlPostController.deleteReview
 );
 

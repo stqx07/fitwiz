@@ -15,12 +15,6 @@ module.exports.submitReview = (req, res) => {
         rating: req.body.rating,
     };
 
-    if (!data.name || !data.email || !data.comment || !data.rating) {
-        return res.status(400).json({
-            message: "Name, email, comment, and rating are required.",
-        });
-    }
-
     if (data.rating < 1 || data.rating > 5) {
         return res.status(400).json({
             message: "Rating must be between 1 and 5.",
@@ -132,7 +126,7 @@ module.exports.checkReviewExistence = (req, res, next) => {
 // ######################################################################################
 module.exports.checkUserOwnership = (req, res, next) => {
     const userId = res.locals.user_id;
-    const reviewId = req.body.reviewId;
+    const reviewId = req.body.reviewId || req.params.reviewId;
 
     if (!userId ) {
         return res.status(400).json({

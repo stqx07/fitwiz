@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Callback to populate vault items
   const populateVaultItems = (responseStatus, responseData) => {
-    console.log("Vault API Response:", responseData); // Debugging log
 
     if (responseStatus === 200) {
       vaultItemsContainer.innerHTML = ""; // Clear existing items

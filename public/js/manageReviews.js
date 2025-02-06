@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Callback function to handle the response after updating a review
   const callbackForUpdateReview = (responseStatus, responseData) => {
-    console.log("Update response:", responseStatus, responseData); // Debugging log
 
     if (responseStatus === 200) {
       editReviewModal.hide();

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
   const reviewsContainer = document.getElementById("reviewsContainer");
   const editReviewForm = document.getElementById("editReviewForm");
   const editReviewModalElement = document.getElementById("editReviewModal");
@@ -32,14 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
         reviewCard.className = "card custom-card bg-dark text-white shadow-sm border border-white mb-3";
         reviewCard.setAttribute("data-review-id", review.review_id);
 
+        // Conditionally render the edit and delete icons only if the user is logged in
         reviewCard.innerHTML = `
           <div class="card-body position-relative">
-            <!-- Edit & Delete Icons -->
-            <div class="position-absolute top-0 end-0 mt-2 me-2">
-              <i class="bi bi-pencil-square text-white edit-review" data-review-id="${review.review_id}" style="cursor: pointer; margin-right: 10px;"></i>
-              <i class="bi bi-trash text-white delete-review" data-review-id="${review.review_id}" style="cursor: pointer;"></i>
-            </div>
-
+            ${token ? `
+              <div class="position-absolute top-0 end-0 mt-2 me-2">
+                <i class="bi bi-pencil-square text-white edit-review" data-review-id="${review.review_id}" style="cursor: pointer; margin-right: 10px;"></i>
+                <i class="bi bi-trash text-white delete-review" data-review-id="${review.review_id}" style="cursor: pointer;"></i>
+              </div>
+            ` : ""}
             <h5 class="card-title">${review.name}</h5>
             <h6 class="card-subtitle mb-2 text-white">Email: ${review.email}</h6>
             <h6 class="card-subtitle mb-2 text-warning">Rating: ${"★".repeat(review.rating) + "☆".repeat(5 - review.rating)}</h6>
@@ -51,14 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
         reviewsContainer.appendChild(reviewCard);
       });
 
-      // Attach event listeners for edit and delete buttons
-      document.querySelectorAll(".edit-review").forEach((icon) =>
-        icon.addEventListener("click", handleEditReview)
-      );
-
-      document.querySelectorAll(".delete-review").forEach((icon) =>
-        icon.addEventListener("click", handleDeleteReview)
-      );
+      // Attach event listeners for edit and delete only if the user is logged in
+      if (token) {
+        document.querySelectorAll(".edit-review").forEach((icon) =>
+          icon.addEventListener("click", handleEditReview)
+        );
+        document.querySelectorAll(".delete-review").forEach((icon) =>
+          icon.addEventListener("click", handleDeleteReview)
+        );
+      }
 
     } else if (responseStatus === 404) {
       reviewsContainer.innerHTML = `<p class="text-center text-warning">No reviews found.</p>`;
@@ -67,12 +70,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Function to handle editing a review
+  // Function to handle editing a review (for both inline and window namespace)
   const handleEditReview = (event) => {
+    // (Since the icons are only visible when logged in, no extra token check is needed here)
     const reviewId = event.target.getAttribute("data-review-id");
     const reviewCard = event.target.closest(".card");
 
-    // Extract review details from card
+    // Extract review details from the card
     const name = reviewCard.querySelector(".card-title").textContent;
     const email = reviewCard.querySelector(".card-subtitle").textContent.replace("Email: ", "");
     const ratingStars = reviewCard.querySelector(".text-warning").textContent;
@@ -85,100 +89,116 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("editComments").value = comment;
     document.getElementById("editRating").value = rating;
 
+    // Show the edit review modal
     new bootstrap.Modal(document.getElementById("editReviewModal")).show();
   };
 
-  // Function to handle editing a review when the edit button is clicked
+  // Alternatively, if you need a global version of handleEditReview
   window.handleEditReview = (event) => {
-      const reviewId = event.target.getAttribute("data-review-id");
-      const reviewCard = event.target.closest(".card");
+    const token = localStorage.getItem("token");
+    if (!token) {
+      showMessageCard("You must be logged in to edit a review!", "warning");
+      return;
+    }
+    const reviewId = event.target.getAttribute("data-review-id");
+    const reviewCard = event.target.closest(".card");
 
-      // Extract review details from card
-      editReviewId.value = reviewId;
-      editUsername.value = reviewCard.querySelector(".card-title").textContent;
-      editEmail.value = reviewCard.querySelector(".card-subtitle").textContent.replace("Email: ", "");
-      editComments.value = reviewCard.querySelector(".card-text").textContent;
+    editReviewId.value = reviewId;
+    editUsername.value = reviewCard.querySelector(".card-title").textContent;
+    editEmail.value = reviewCard.querySelector(".card-subtitle").textContent.replace("Email: ", "");
+    editComments.value = reviewCard.querySelector(".card-text").textContent;
 
-      const ratingStars = reviewCard.querySelector(".text-warning").textContent;
-      editRating.value = ratingStars.split("★").length - 1; // Count filled stars
+    const ratingStars = reviewCard.querySelector(".text-warning").textContent;
+    editRating.value = ratingStars.split("★").length - 1; // Count filled stars
 
-      editReviewModal.show();
+    editReviewModal.show();
   };
 
   // Event listener for submitting the review edit form
   editReviewForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Prevent default form submission
 
-      const updatedData = {
-          reviewId: editReviewId.value,
-          name: editUsername.value.trim(),
-          email: editEmail.value.trim(),
-          comment: editComments.value.trim(),
-          rating: parseInt(editRating.value),
-      };
+    const token = localStorage.getItem("token");
+    if (!token) {
+      showMessageCard("You must be logged in to edit a review!", "warning");
+      return;
+    }
 
-      if (!updatedData.name || !updatedData.email || !updatedData.comment || isNaN(updatedData.rating)) {
-          showMessageCard("All fields are required!", "warning");
-          return;
-      }
+    const updatedData = {
+      reviewId: editReviewId.value,
+      name: editUsername.value.trim(),
+      email: editEmail.value.trim(),
+      comment: editComments.value.trim(),
+      rating: parseInt(editRating.value),
+    };
 
-      fetchMethod(
-          `${currentUrl}/api/owlPost`,
-          callbackForUpdateReview,
-          "PUT",
-          updatedData,
-          localStorage.getItem("token")
-      );
+    if (!updatedData.name || !updatedData.email || !updatedData.comment || isNaN(updatedData.rating)) {
+      showMessageCard("All fields are required!", "warning");
+      return;
+    }
+
+    fetchMethod(
+      `${currentUrl}/api/owlPost`,
+      callbackForUpdateReview,
+      "PUT",
+      updatedData,
+      token
+    );
   });
 
   // Callback function to handle the response after updating a review
   const callbackForUpdateReview = (responseStatus, responseData) => {
-      console.log("Update response:", responseStatus, responseData); // Debugging log
+    console.log("Update response:", responseStatus, responseData); // Debugging log
 
-      if (responseStatus === 200) {
-          editReviewModal.hide();
+    if (responseStatus === 200) {
+      editReviewModal.hide();
 
-          requestAnimationFrame(() => {
-              editReviewModalElement.classList.remove("show");
-              editReviewModalElement.setAttribute("aria-hidden", "true");
-              document.body.classList.remove("modal-open");
-              editReviewModalElement.style.display = "none";
-              
-              document.querySelectorAll(".modal-backdrop").forEach(backdrop => backdrop.remove());
-          });
+      requestAnimationFrame(() => {
+        editReviewModalElement.classList.remove("show");
+        editReviewModalElement.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+        editReviewModalElement.style.display = "none";
 
-          showMessageCard("Review updated successfully!", "success");
+        document.querySelectorAll(".modal-backdrop").forEach(backdrop => backdrop.remove());
+      });
 
-          const reviewCard = document.querySelector(`[data-review-id="${editReviewId.value}"]`).closest(".card");
-          reviewCard.querySelector(".card-title").textContent = editUsername.value;
-          reviewCard.querySelector(".card-subtitle").textContent = `Email: ${editEmail.value}`;
-          reviewCard.querySelector(".card-text").textContent = editComments.value;
-          reviewCard.querySelector(".text-warning").textContent = "★".repeat(editRating.value) + "☆".repeat(5 - editRating.value);
-      } else {
-          showMessageCard(responseData?.message || "Failed to update review.", "danger");
-      }
+      showMessageCard("Review updated successfully!", "success");
+
+      const reviewCard = document.querySelector(`[data-review-id="${editReviewId.value}"]`).closest(".card");
+      reviewCard.querySelector(".card-title").textContent = editUsername.value;
+      reviewCard.querySelector(".card-subtitle").textContent = `Email: ${editEmail.value}`;
+      reviewCard.querySelector(".card-text").textContent = editComments.value;
+      reviewCard.querySelector(".text-warning").textContent = "★".repeat(editRating.value) + "☆".repeat(5 - editRating.value);
+    } else {
+      showMessageCard(responseData?.message || "Failed to update review.", "danger");
+    }
   };
 
-    // Function to handle deleting a review
-    const handleDeleteReview = (event) => {
-      const reviewId = event.target.getAttribute("data-review-id");
-  
-      fetchMethod(
-        `${currentUrl}/api/owlPost/${reviewId}`,
-        (responseStatus, responseData) => {
-          if (responseStatus === 204) {
-            document.querySelector(`[data-review-id="${reviewId}"]`).remove();
-            showMessageCard("Review deleted successfully!", "success");
-          } else {
-            showMessageCard(responseData?.message || "Failed to delete review.", "danger");
-          }
-        },
-        "DELETE",
-        null,
-        localStorage.getItem("token")
-      );
-    };
-  
-    // Fetch reviews on page load
-    fetchMethod(`${currentUrl}/api/owlPost`, callbackForGetAllReviews, "GET", null, null);
+  // Function to handle deleting a review
+  const handleDeleteReview = (event) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      showMessageCard("You must be logged in to delete a review!", "warning");
+      return;
+    }
+    const reviewId = event.target.getAttribute("data-review-id");
+
+    fetchMethod(
+      `${currentUrl}/api/owlPost/${reviewId}`,
+      (responseStatus, responseData) => {
+        if (responseStatus === 204) {
+          document.querySelector(`[data-review-id="${reviewId}"]`).remove();
+          showMessageCard("Review deleted successfully!", "success");
+        } else {
+          showMessageCard(responseData?.message || "Failed to delete review.", "danger");
+        }
+      },
+      "DELETE",
+      null,
+      token
+    );
+  };
+
+  // Fetch reviews on page load
+  fetchMethod(`${currentUrl}/api/owlPost`, callbackForGetAllReviews, "GET", null, null);
 });

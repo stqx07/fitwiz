@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
   reviewForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    // If not logged in, show error message and exit.
+    if (!token) {
+      showMessageCard("You must be logged in to leave a review!", "warning");
+      return;
+    }
+
     const name = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
     const rating = ratingInput.value;
@@ -64,4 +70,4 @@ document.addEventListener("DOMContentLoaded", function () {
       showMessageCard(responseData?.message || "Failed to submit review.", "danger");
     }
   };
-});  
+});

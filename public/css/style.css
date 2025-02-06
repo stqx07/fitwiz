@@ -15,7 +15,7 @@ body {
 }
 
 .custom-card:hover {
-    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    transform: scale(1.035); /* Slightly enlarge the card on hover */
 }
 
 .custom-card img {
@@ -107,7 +107,7 @@ body {
     top: 10px; /* Positions the card 10px from the top of the page */
     left: 50%; /* Centers the card horizontally */
     transform: translateX(-50%); /* Adjusts position for perfect centering */
-    z-index: 1050; /* Ensures the card is displayed above other elements */
+    z-index: 1100; /* Ensures the card is displayed above other elements */
     padding: 15px 20px; /* Adds space inside the card for better readability */
     border-radius: 5px; /* Adds rounded corners for a modern look */
     font-size: 16px; /* Sets a readable font size */

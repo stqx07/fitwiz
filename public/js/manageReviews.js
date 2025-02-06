@@ -70,30 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Function to handle editing a review (for both inline and window namespace)
-  const handleEditReview = (event) => {
-    // (Since the icons are only visible when logged in, no extra token check is needed here)
-    const reviewId = event.target.getAttribute("data-review-id");
-    const reviewCard = event.target.closest(".card");
-
-    // Extract review details from the card
-    const name = reviewCard.querySelector(".card-title").textContent;
-    const email = reviewCard.querySelector(".card-subtitle").textContent.replace("Email: ", "");
-    const ratingStars = reviewCard.querySelector(".text-warning").textContent;
-    const rating = ratingStars.split("★").length - 1; // Count filled stars
-    const comment = reviewCard.querySelector(".card-text").textContent;
-
-    document.getElementById("editReviewId").value = reviewId;
-    document.getElementById("editUsername").value = name;
-    document.getElementById("editEmail").value = email;
-    document.getElementById("editComments").value = comment;
-    document.getElementById("editRating").value = rating;
-
-    // Show the edit review modal
-    new bootstrap.Modal(document.getElementById("editReviewModal")).show();
-  };
-
-  // Alternatively, if you need a global version of handleEditReview
   window.handleEditReview = (event) => {
     const token = localStorage.getItem("token");
     if (!token) {

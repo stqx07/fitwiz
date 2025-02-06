@@ -201,7 +201,7 @@ module.exports.createDuelRecord = (req, res, next) => {
 // DEFINE CONTROLLER FUNCTION TO READ DUEL BY ID (Section B Task 13)
 // #################################################################
 module.exports.readDuelById = (req, res, next) => {
-  const duel_id = req.body.duelId;
+  const duel_id = parseInt(req.body.duelId);
   if (!duel_id || !Number.isInteger(duel_id)) {
     res.status(400).json({
       message: "Invalid Duel ID."

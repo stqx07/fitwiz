@@ -85,25 +85,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle choosing a house
     const handleChooseHouse = (event) => {
         const chosenHouseId = event.target.getAttribute("data-houseid");
-
+    
         if (!chosenHouseId) {
             showMessageCard("Error: House selection is missing.", "danger");
             return;
         }
-
+    
         const requestData = { houseId: parseInt(chosenHouseId) };
-
+    
         fetchMethod(`${currentUrl}/api/houses/chooseHouse`, (responseStatus, responseData) => {
             if (responseStatus === 201) {
                 showMessageCard(`Congratulations! You are now in ${responseData.message}!`, "success", true);
-
-            // Close the modal immediately after house selection
-            const houseModal = document.getElementById("houseModal");
-            const bootstrapModal = bootstrap.Modal.getInstance(houseModal);
-            if (bootstrapModal) {
-                bootstrapModal.hide();
-            }
-
+    
+                // Close the modal immediately after house selection
+                const houseModal = document.getElementById("houseModal");
+                const bootstrapModal = bootstrap.Modal.getInstance(houseModal);
+                if (bootstrapModal) {
+                    bootstrapModal.hide();
+                }
+    
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+    
             } else if (responseStatus === 409) {
                 showMessageCard("User has already been sorted into a house!", "warning");
             } else {

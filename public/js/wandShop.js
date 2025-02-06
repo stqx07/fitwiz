@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
+
+  // If the user is not logged in, remove the skillpoints display container.
+  if (!token) {
+    const skillpointsContainer = document.querySelector(
+      ".container.d-flex.justify-content-end.align-items-center.mb-3"
+    );
+    if (skillpointsContainer) {
+      skillpointsContainer.remove();
+    }
+  }
+
   const skillpointsElement = document.getElementById("skillpoints");
   const wandList = document.querySelector(".row.g-4");
 
@@ -19,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   };
 
-  // Fetch and update user skillpoints dynamically
+  // Callback to update the user's skillpoints dynamically.
   const callbackForUserSkillpoints = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       skillpointsElement.textContent = responseData.skillpoints || "0";
@@ -27,11 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
       showMessageCard("Failed to load skillpoints.", "danger");
     }
   };
-  
-  // Callback to populate wand shop
+
+  // Callback to populate the wand shop.
   const callbackForWands = (responseStatus, responseData) => {
     if (responseStatus === 200) {
-      wandList.innerHTML = ""; // Clear existing wands
+      wandList.innerHTML = ""; // Clear any existing wands
 
       responseData.forEach((wand) => {
         const wandCard = document.createElement("div");
@@ -45,14 +56,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 <strong>Wand ID:</strong> ${wand.wand_id} | 
                 <strong>Cost:</strong> ${wand.wand_cost} Skillpoints
               </p>
-              <button class="btn btn-primary buy-wand-btn" data-wand-id="${wand.wand_id}">Buy</button>
+              ${
+                token
+                  ? `<button class="btn btn-primary buy-wand-btn" data-wand-id="${wand.wand_id}">Buy</button>`
+                  : ""
+              }
             </div>
           </div>
         `;
         wandList.appendChild(wandCard);
       });
 
-      // Add event listeners to Buy buttons
+      // Add event listeners to all Buy buttons (if any exist).
       document.querySelectorAll(".buy-wand-btn").forEach((button) => {
         button.addEventListener("click", handlePurchase);
       });
@@ -61,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Handle wand purchase
+  // Handle wand purchase.
   const handlePurchase = (event) => {
     const wandId = event.target.getAttribute("data-wand-id");
     if (!token) {
@@ -78,12 +93,18 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   };
 
-  // Callback for purchase response
+  // Callback for purchase response.
   const callbackForPurchase = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       showMessageCard("Wand purchased successfully!", "success");
-      // Fetch updated skillpoints immediately after purchase
-      fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
+      // Fetch updated skillpoints immediately after purchase.
+      fetchMethod(
+        `${currentUrl}/api/users`,
+        callbackForUserSkillpoints,
+        "GET",
+        null,
+        token
+      );
     } else if (responseStatus === 400 || responseStatus === 403) {
       const errorMessage = responseData?.message || "Unable to complete the purchase.";
       showMessageCard(errorMessage, "warning");
@@ -93,7 +114,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Fetch wands and skillpoints on page load
+  // Fetch wands on page load.
   fetchMethod(`${currentUrl}/api/diagonAlley/wandShop`, callbackForWands, "GET", null, token);
-  fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
+
+  // Fetch skillpoints only if the user is logged in.
+  if (token) {
+    fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
+  }
 });

@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
+
+  // If the user is not logged in, remove the skillpoints display container.
+  if (!token) {
+    const skillpointsContainer = document.querySelector(
+      ".container.d-flex.justify-content-end.align-items-center.mb-3"
+    );
+    if (skillpointsContainer) {
+      skillpointsContainer.remove();
+    }
+  }
+
   const skillpointsElement = document.getElementById("skillpoints");
   const potionList = document.querySelector(".row.g-4");
 
@@ -19,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   };
 
-  // Fetch and update user skillpoints dynamically
+  // Callback to update the user's skillpoints dynamically.
   const callbackForUserSkillpoints = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       skillpointsElement.textContent = responseData.skillpoints || "0";
@@ -28,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Callback to populate potion shop
+  // Callback to populate potion shop.
   const callbackForPotions = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       potionList.innerHTML = ""; // Clear existing potions
@@ -51,23 +62,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 } |
                 <strong>Cost:</strong> ${potion.potion_cost} Skillpoints
               </p>
-              <button class="btn btn-primary buy-potion-btn" data-potion-id="${potion.potion_id}">Buy</button>
+              ${
+                token
+                  ? `<button class="btn btn-primary buy-potion-btn" data-potion-id="${potion.potion_id}">Buy</button>`
+                  : ""
+              }
             </div>
           </div>
         `;
         potionList.appendChild(potionCard);
       });
 
-      // Add event listeners to Buy buttons
-      document.querySelectorAll(".buy-potion-btn").forEach((button) => {
-        button.addEventListener("click", handlePurchase);
-      });
+      // Add event listeners to Buy buttons only if the user is logged in.
+      if (token) {
+        document.querySelectorAll(".buy-potion-btn").forEach((button) => {
+          button.addEventListener("click", handlePurchase);
+        });
+      }
     } else {
       showMessageCard("Failed to load potions. Please try again later.", "danger");
     }
   };
 
-  // Handle potion purchase
+  // Handle potion purchase.
   const handlePurchase = (event) => {
     const potionId = event.target.getAttribute("data-potion-id");
     if (!token) {
@@ -75,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Use fetchMethod to send the purchase request
+    // Use fetchMethod to send the purchase request.
     fetchMethod(
       `${currentUrl}/api/diagonAlley/potionShop/purchase`,
       callbackForPurchase,
@@ -85,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   };
 
-  // Callback for purchase response
+  // Callback for purchase response.
   const callbackForPurchase = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       showMessageCard("Potion purchased successfully!", "success");
-      // Fetch updated skillpoints immediately after purchase
+      // Fetch updated skillpoints immediately after purchase.
       fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
     } else if (responseStatus === 400 || responseStatus === 403) {
       const errorMessage = responseData?.message || "Unable to complete the purchase.";
@@ -100,7 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Fetch potions on page load
+  // Fetch potions on page load.
   fetchMethod(`${currentUrl}/api/diagonAlley/potionShop`, callbackForPotions, "GET", null, token);
-  fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
+
+  // Fetch skillpoints only if the user is logged in.
+  if (token) {
+    fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
+  }
 });

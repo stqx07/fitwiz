@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
+
+  // If the user is not logged in, remove the skillpoints display container.
+  if (!token) {
+    const skillpointsContainer = document.querySelector(
+      ".container.d-flex.justify-content-end.align-items-center.mb-3"
+    );
+    if (skillpointsContainer) {
+      skillpointsContainer.remove();
+    }
+  }
+
   const skillpointsElement = document.getElementById("skillpoints");
   const spellList = document.querySelector(".row.g-4");
 
@@ -19,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   };
 
-  // Fetch and update user skillpoints dynamically
+  // Callback to update the user's skillpoints dynamically.
   const callbackForUserSkillpoints = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       skillpointsElement.textContent = responseData.skillpoints || "0";
@@ -28,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Callback to populate spell shop
+  // Callback to populate spell shop.
   const callbackForSpells = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       spellList.innerHTML = ""; // Clear existing spells
@@ -47,23 +58,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 <strong>Damage:</strong> ${spell.spell_damage} Damage | 
                 <strong>Cost:</strong> ${spell.spell_cost} Skillpoints
               </p>
-              <button class="btn btn-primary buy-spell-btn" data-spell-id="${spell.spell_id}">Buy</button>
+              ${ token ? `<button class="btn btn-primary buy-spell-btn" data-spell-id="${spell.spell_id}">Buy</button>` : "" }
             </div>
           </div>
         `;
         spellList.appendChild(spellCard);
       });
 
-      // Add event listeners to Buy buttons
-      document.querySelectorAll(".buy-spell-btn").forEach((button) => {
-        button.addEventListener("click", handlePurchase);
-      });
+      // Attach event listeners to the Buy buttons only if the user is logged in.
+      if (token) {
+        document.querySelectorAll(".buy-spell-btn").forEach((button) => {
+          button.addEventListener("click", handlePurchase);
+        });
+      }
     } else {
       showMessageCard("Failed to load spells. Please try again later.", "danger");
     }
   };
 
-  // Handle spell purchase
+  // Handle spell purchase.
   const handlePurchase = (event) => {
     const spellId = event.target.getAttribute("data-spell-id");
     if (!token) {
@@ -80,11 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   };
 
-  // Callback for purchase response
+  // Callback for purchase response.
   const callbackForPurchase = (responseStatus, responseData) => {
     if (responseStatus === 200) {
       showMessageCard("Spell purchased successfully!", "success");
-      // Fetch updated skillpoints immediately after purchase
+      // Fetch updated skillpoints immediately after purchase.
       fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
     } else if (responseStatus === 400 || responseStatus === 403) {
       const errorMessage = responseData?.message || "Unable to complete the purchase.";
@@ -95,7 +108,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Fetch spells and skillpoints on page load
+  // Fetch spells on page load.
   fetchMethod(`${currentUrl}/api/diagonAlley/spellShop`, callbackForSpells, "GET", null, token);
-  fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
-}); 
+
+  // Fetch skillpoints only if the user is logged in.
+  if (token) {
+    fetchMethod(`${currentUrl}/api/users`, callbackForUserSkillpoints, "GET", null, token);
+  }
+});

@@ -3,28 +3,27 @@
     --custom-color: rgb(88, 92, 252); /* Primary color */
     --custom-color-light: rgb(130, 132, 252); /* Lighter shade for active states */
     --custom-color-darker: rgba(88, 92, 252, 0.8); /* Hover color */
-    --custom-bg-color: rgba(0, 0, 27, 0.9); /* Background color */
-    --custom-border-color: rgba(255, 255, 255, 0.2); /* Light white border */
     --custom-text-color: white; /* Text color */
-    --custom-placeholder-color: rgba(255, 255, 255, 0.6); /* Placeholder text color */
-    --custom-card-bg-color: rgba(0, 0, 27, 0.9); /* Card background color */
-    --custom-card-hover-shadow: rgba(0, 0, 0, 0.3); /* Shadow for hover effect on cards */
     --custom-filter-option-bg-color: white; /* Background color for dropdown options */
+    --custom-placeholder-color: rgba(255, 255, 255, 0.6); /* Placeholder text color */
+    --custom-border-color: rgba(255, 255, 255, 0.2); /* Light white border */
+    --custom-card-hover-shadow: rgba(0, 0, 0, 0.3); /* Shadow for hover effect on cards */
     --custom-filter-option-text-color: black; /* Text color for dropdown options */
+    --custom-bg-color: rgba(0, 0, 27, 0.9); /* Background color */
 }
 
 .btn-primary {
     /* Customize primary button styles */
-    --bs-btn-bg: var(--custom-color) !important;
-    --bs-btn-active-bg: var(--custom-color-light) !important;
-    --bs-btn-hover-bg: var(--custom-color-darker) !important;
-    --bs-btn-color: var(--custom-text-color) !important;
+    --bs-btn-bg: var(--custom-color) !important; /* Primary button background color */
+    --bs-btn-active-bg: var(--custom-color-light) !important; /* Button background color when active */
+    --bs-btn-hover-bg: var(--custom-color-darker) !important; /* Button background color on hover */
+    --bs-btn-color: var(--custom-text-color) !important; /* Button text color */
 }
 
 .custom-card {
     /* Card styles */
-    background-color: var(--custom-card-bg-color) !important;
-    color: var(--custom-text-color) !important;
+    background-color: var(--custom-bg-color) !important; /* Background color for cards */
+    color: var(--custom-text-color) !important; /* Text color for cards */
     border: 2px solid var(--custom-border-color); /* Add border color */
 }
 
@@ -46,27 +45,28 @@
 
 .custom-tabs .nav-link {
     /* Default tab link styles */
-    background-color: var(--custom-bg-color) !important;
-    color: var(--custom-text-color) !important;
+    background-color: var(--custom-bg-color) !important; /* Background color for inactive tabs */
+    color: var(--custom-text-color) !important; /* Text color for inactive tabs */
 }
 
 .custom-tabs .nav-link.active {
     /* Active tab link styles */
-    background-color: var(--custom-color) !important;
-    color: var(--custom-text-color) !important;
-    border-color: var(--custom-color) var(--custom-border-color) var(--custom-border-color) !important;
+    background-color: var(--custom-color) !important; /* Background color for active tab */
+    color: var(--custom-text-color) !important; /* Text color for active tab */
+    border-color: var(--custom-color) var(--custom-border-color) var(--custom-border-color) !important; /* Border colors for active tab */
 }
 
 .custom-tabs .nav-link:hover {
     /* Hover styles for tab links */
-    background-color: var(--custom-color-darker) !important;
-    color: var(--custom-text-color) !important;
+    background-color: var(--custom-color-darker) !important; /* Background color on hover */
+    color: var(--custom-text-color) !important; /* Text color on hover */
 }
 
-/* Dropdown hover effect */
-.dropdown-item:hover {
+.dropdown-item:hover, 
+.dropdown-item:focus {
+    /* Hover and focus styles for dropdown items */
+    background-color: var(--custom-color-light) !important;
     color: var(--custom-text-color) !important;
-    background-color: var(--custom-filter-option-text-color) !important;
 }
 
 .filter:hover {
@@ -77,8 +77,8 @@
 
 .filter option {
     /* Dropdown option styles */
-    background-color: var(--custom-filter-option-bg-color) !important;
-    color: var(--custom-filter-option-text-color) !important;
+    background-color: var(--custom-filter-option-bg-color) !important; /* Background color for options */
+    color: var(--custom-filter-option-text-color) !important; /* Text color for options */
 }
 
 .modal-footer a.text-primary {
@@ -162,9 +162,19 @@
     border: 1px solid #f5c6cb; /* Red border for emphasis */
 }
 
+.nav-link:hover, 
+.nav-link:focus {
+    /* Hover and focus styles for navigation links */
+    color: var(--custom-color-light) !important;
+}
+
+/* Styling for "No activity history found." message */
+.no-activity-message {
+    color: #ffcc00 !important; /* Highlighted yellow color for no activity message */
+}
+
 /* Placeholder styling for input fields in the review form */
 #reviewForm input::placeholder,
 #reviewForm textarea::placeholder {
     color: #120000 !important; /* Set placeholder text color to a dark shade */
-    opacity: 0.8 !important; /* Ensure placeholder text is semi-transparent */
 }

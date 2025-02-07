@@ -27,14 +27,12 @@ module.exports.selectUserLeaderboard = (data, callback) => {
             u.skillpoints, 
             h.house_name,
             COUNT(DISTINCT uc.complete_id) AS challenges_completed,
-            COUNT(DISTINCT CASE WHEN d.result = 'Win' THEN d.duel_id END) AS duels_won,
-            COUNT(DISTINCT CASE WHEN uq.status = 'Completed' THEN uq.user_quest_id END) AS quests_completed
+            COUNT(DISTINCT CASE WHEN d.result = 'Win' THEN d.duel_id END) AS duels_won
         FROM User u
         LEFT JOIN UserHouse uh ON u.user_id = uh.user_id
         LEFT JOIN HogwartsHouse h ON uh.house_id = h.house_id
         LEFT JOIN UserCompletion uc ON u.user_id = uc.user_id
         LEFT JOIN Duel d ON u.user_id = d.user_id
-        LEFT JOIN UserQuest uq ON u.user_id = uq.user_id
     `;
     
     const VALUES = [];

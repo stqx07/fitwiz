@@ -30,15 +30,19 @@ document.addEventListener("DOMContentLoaded", function () {
         let challengeActions = "";
         if (token) {
           challengeActions = `
-            <button class="btn btn-primary complete-btn" data-challenge-id="${challenge.challenge_id}">Complete Challenge</button>
-            <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editChallengeModal"
-              data-challenge-id="${challenge.challenge_id}" data-challenge-name="${challenge.challenge}"
-              data-skillpoints="${challenge.skillpoints}">
-              <i class="bi bi-pencil-square text-light"></i>
+            <button class="btn btn-primary complete-btn" data-challenge-id="${challenge.challenge_id}">
+              Complete Challenge
             </button>
-            <button class="btn btn-delete text-light" title="Delete Challenge" data-challenge-id="${challenge.challenge_id}">
-              <i class="bi bi-trash"></i>
-            </button>
+            <div class="mt-2">
+              <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editChallengeModal"
+                data-challenge-id="${challenge.challenge_id}" data-challenge-name="${challenge.challenge}"
+                data-skillpoints="${challenge.skillpoints}">
+                <i class="bi bi-pencil-square text-light"></i>
+              </button>
+              <button class="btn btn-delete text-light" title="Delete Challenge" data-challenge-id="${challenge.challenge_id}">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
           `;
         }
 

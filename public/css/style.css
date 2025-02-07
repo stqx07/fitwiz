@@ -1,4 +1,5 @@
 body {
+    font-family: 'Bookman Old Style', 'Palatino Linotype', 'Cambria', 'Lucida Bright', 'Century Schoolbook', 'Times New Roman'; /* Set the font family for the entire page */
     background-image: url('../images/background.jpeg'); /* Background image for the body */
     background-size: cover; /* Cover the entire viewport */
     background-position: center; /* Center the background image */

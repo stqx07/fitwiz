@@ -21,13 +21,28 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // Callback to populate vault items
-  const populateVaultItems = (responseStatus, responseData) => {
-
+  const populateVaultItems = (responseStatus, responseData, filterType) => {
+    vaultItemsContainer.innerHTML = ""; // Clear existing items
+    
     if (responseStatus === 200) {
-      vaultItemsContainer.innerHTML = ""; // Clear existing items
-
-      responseData.forEach((item) => {
-        // Identify item type dynamically based on available fields
+      // Filter responseData based on the selected type
+      let filteredData = responseData;
+      if (filterType === "wands") {
+        filteredData = responseData.filter(item => item.wand_id !== undefined);
+      } else if (filterType === "potions") {
+        filteredData = responseData.filter(item => item.potion_id !== undefined);
+      } else if (filterType === "spells") {
+        filteredData = responseData.filter(item => item.spell_id !== undefined);
+      }
+      
+      // If no items exist for the selected filter, show a message
+      if (filteredData.length === 0) {
+        showMessageCard("No items found in this category.", "warning");
+        return;
+      }
+      
+      // Create cards for each filtered item
+      filteredData.forEach((item) => {
         let itemId, itemName, itemType;
 
         if (item.wand_id !== undefined) {
@@ -73,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       showMessageCard(responseData?.message || "An unexpected error occurred.", "danger");
     }
-  };
+  };  
 
   // Fetch vault items based on the selected filter
   const fetchVaultItems = (type) => {

@@ -45,7 +45,10 @@ router.post(
     jwtMiddleware.verifyToken,
     verifyController.showTokenVerified
   );
-
+  
+// Route to generate a new token and send it back
+router.post("/extend-session", jwtMiddleware.generateToken, jwtMiddleware.sendToken);
+  
 // Routes for user-related operations
 router.use("/users", userRoutes);
 

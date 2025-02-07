@@ -34,7 +34,7 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
     DROP TABLE IF EXISTS Quest;
     DROP TABLE IF EXISTS HogwartsHouse;
     DROP TABLE IF EXISTS User;
-    
+
     -- Parent Tables
     CREATE TABLE User (
         user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,13 +44,13 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         skillpoints INT NOT NULL DEFAULT 0,
         user_health INT NOT NULL DEFAULT 100
     );
-    
+
     CREATE TABLE HogwartsHouse (
         house_id INT AUTO_INCREMENT PRIMARY KEY,
         house_name VARCHAR(255) NOT NULL UNIQUE,
         house_description TEXT NOT NULL
     );
-    
+
     CREATE TABLE Creature (
         creature_id INT AUTO_INCREMENT PRIMARY KEY,
         creature_name VARCHAR(255) NOT NULL,
@@ -58,7 +58,7 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         reward_points INT NOT NULL,
         description TEXT
     );
-    
+
     CREATE TABLE Quest (
         quest_id INT AUTO_INCREMENT PRIMARY KEY,
         quest_name VARCHAR(255) NOT NULL,
@@ -66,13 +66,13 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         reward_points INT NOT NULL,
         completion_status BOOL DEFAULT FALSE
     );
-    
+
     CREATE TABLE WandShop (
         wand_id INT AUTO_INCREMENT PRIMARY KEY,
         wand_name TEXT NOT NULL,
         wand_cost INT NOT NULL
     );
-    
+
     CREATE TABLE PotionShop (
         potion_id INT AUTO_INCREMENT PRIMARY KEY,
         potion_name TEXT NOT NULL,
@@ -81,7 +81,7 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         potion_damage INT,
         potion_heal INT
     );
-    
+
     CREATE TABLE SpellShop (
         spell_id INT AUTO_INCREMENT PRIMARY KEY,
         spell_name TEXT NOT NULL,
@@ -89,8 +89,9 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         spell_cost INT NOT NULL,
         spell_damage INT
     );
-    
-    -- Child Tables
+
+    -- Child Tables with Proper CASCADE Handling
+
     CREATE TABLE Review (
         review_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -99,9 +100,9 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         comment TEXT NOT NULL,
         rating INT CHECK (rating BETWEEN 1 AND 5),
         submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES User(user_id)
+        FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
     );
-    
+
     CREATE TABLE Vault (
         vault_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -109,19 +110,20 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         potion_id INT,
         spell_id INT,
         potion_quantity INT DEFAULT 0,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (wand_id) REFERENCES WandShop(wand_id),
-        FOREIGN KEY (potion_id) REFERENCES PotionShop(potion_id),
-        FOREIGN KEY (spell_id) REFERENCES SpellShop(spell_id)
+        FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE,
+        FOREIGN KEY (wand_id) REFERENCES WandShop(wand_id) ON DELETE SET NULL,
+        FOREIGN KEY (potion_id) REFERENCES PotionShop(potion_id) ON DELETE SET NULL,
+        FOREIGN KEY (spell_id) REFERENCES SpellShop(spell_id) ON DELETE SET NULL
     );
-    
+
     CREATE TABLE FitnessChallenge (
         challenge_id INT AUTO_INCREMENT PRIMARY KEY,
         creator_id INT NOT NULL,
         challenge TEXT NOT NULL,
-        skillpoints INT NOT NULL
+        skillpoints INT NOT NULL,
+        FOREIGN KEY (creator_id) REFERENCES User(user_id) ON DELETE CASCADE
     );
-    
+
     CREATE TABLE UserCompletion (
         complete_id INT AUTO_INCREMENT PRIMARY KEY,
         challenge_id INT NOT NULL,
@@ -129,10 +131,10 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         completed BOOL NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         notes TEXT,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (challenge_id) REFERENCES FitnessChallenge(challenge_id)
+        FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE,
+        FOREIGN KEY (challenge_id) REFERENCES FitnessChallenge(challenge_id) ON DELETE CASCADE
     );
-    
+
     CREATE TABLE Duel (
         duel_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -144,10 +146,10 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         skillpoints_deducted INT NOT NULL DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (creature_id) REFERENCES Creature(creature_id)
+        FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE,
+        FOREIGN KEY (creature_id) REFERENCES Creature(creature_id) ON DELETE CASCADE
     );
-    
+
     CREATE TABLE UserQuest (
         user_quest_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -155,16 +157,16 @@ bcrypt.hash('1234', saltRounds, (error, hash) => {
         status VARCHAR(255) DEFAULT 'In Progress',
         progress VARCHAR(255),
         completion_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (quest_id) REFERENCES Quest(quest_id)
+        FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE,
+        FOREIGN KEY (quest_id) REFERENCES Quest(quest_id) ON DELETE CASCADE
     );
-    
+
     CREATE TABLE UserHouse (
         user_id INT PRIMARY KEY,
         house_id INT NOT NULL,
         sorted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (house_id) REFERENCES HogwartsHouse(house_id)
+        FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE,
+        FOREIGN KEY (house_id) REFERENCES HogwartsHouse(house_id) ON DELETE CASCADE
     );
     
     -- Insert required data

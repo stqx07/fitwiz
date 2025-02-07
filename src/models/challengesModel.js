@@ -60,11 +60,11 @@ module.exports.checkUserIdAgainstCreatorId = (data, callback) => {
 module.exports.updateChallenge = (data, callback) => {
   const SQLSTATEMENT = `
     UPDATE FitnessChallenge
-    SET challenge = ?
+    SET challenge = ?, skillpoints = ?
     WHERE challenge_id = ? AND creator_id = ?;
   `;
 
-  const VALUES = [data.challenge, data.challenge_id, data.user_id];
+  const VALUES = [data.challenge, data.skillpoints, data.challenge_id, data.user_id];
   pool.query(SQLSTATEMENT, VALUES, callback);
 };
 

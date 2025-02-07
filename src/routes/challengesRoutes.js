@@ -21,7 +21,7 @@ router.get("/:challenge_id", userCompletionController.selectUserCompleted);
 
 // Section A Task 8 (Create an completion record (marking a challenge complete) from a user by providing challenge_id in URL parameter and user_id, completed, creation_date, and notes in the request body)
 router.post(
-  "/:challenge_id",
+  "/complete",
   jwtMiddleware.verifyToken,
   challengesController.validateChallengeId, // Validate if challenge_id exists
   userController.checkUserById, // Ensure the user exists

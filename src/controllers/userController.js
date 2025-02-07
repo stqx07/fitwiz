@@ -217,9 +217,8 @@ module.exports.checkUserById = (req, res, next) => {
         res.locals.challenge = req.body.challenge;
         res.locals.skillpoints = req.body.skillpoints;
         next();
-      } else if (req.route.path === "/:challenge_id" && req.params.challenge_id && req.method === "POST") {
+      } else if (req.route.path === "/complete" && res.locals.challenge_id && req.method === "POST") {
         res.locals.challenge = req.body.challenge;
-        res.locals.skillpoints = req.body.skillpoints;
         next();
       }
         else if (req.body.username) {
@@ -282,8 +281,9 @@ module.exports.updateUserById = (req, res, next) => {
 module.exports.addUserSkillpoints = (req, res, next) => {
   const data = {
     user_id: res.locals.user_id,
+    skillpoints: res.locals.skillpoints
   };
-
+  
   const callback = (error, results, fields) => {
     if (error) {
       console.error("Error addUserSkillpoints:", error);

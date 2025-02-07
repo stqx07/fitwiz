@@ -89,7 +89,7 @@ module.exports.checkChallengeById = (req, res, next) => {
           message: "Challenge not found!",
         });
       } else {
-        res.locals.databaseChallenge = results[0].challenge;
+        res.locals.databaseChallenge = results[0];
         next();
       }
     }
@@ -120,7 +120,7 @@ module.exports.checkUserIdAgainstCreatorId = (req, res, next) => {
 
   const data = {
     user_id: res.locals.user_id,
-    databaseChallenge: res.locals.databaseChallenge,
+    databaseChallenge: res.locals.databaseChallenge.challenge,
   };
 
   const callback = (error, results, fields) => {
@@ -151,11 +151,18 @@ module.exports.updateChallenge = (req, res, next) => {
       })
       return;
   }
-  
+
+  if (res.locals.databaseChallenge.skillpoints == req.body.skillpoints) {
+    skillpoints = res.locals.databaseChallenge.skillpoints;
+  } else {
+    skillpoints = req.body.skillpoints
+  }
+
   const data = {
     user_id: res.locals.user_id,
     challenge_id: res.locals.challenge_id,
     challenge: res.locals.challenge,
+    skillpoints: skillpoints
   };
 
   const callback = (error, results, fields) => {
@@ -233,7 +240,7 @@ module.exports.deleteRemovedChallengeUserCompletions = (req, res, next) => {
 // DEFINE CONTROLLER FUNCTION TO VALIDATE CHALLENGE ID (Section A Task 8)
 // ######################################################################
 module.exports.validateChallengeId = (req, res, next) => {
-  const challenge_id = parseInt(req.params.challenge_id);
+  const challenge_id = parseInt(req.body.challenge_id);
   if (!challenge_id || !Number.isInteger(challenge_id)) {
     res.status(400).json({
       message: "challenge_id is undefined",
@@ -260,6 +267,7 @@ module.exports.validateChallengeId = (req, res, next) => {
         res.locals.creation_date = req.body.creation_date;
         res.locals.completion = req.body.completed;
         res.locals.notes = req.body.notes;
+        res.locals.skillpoints = results[0].skillpoints;
         next();
       }
     }

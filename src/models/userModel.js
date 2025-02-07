@@ -119,11 +119,11 @@ module.exports.updateById = (data, callback) => {
 module.exports.addUserSkillpoints = (data, callback) => {
   const SQLSTATEMENT = `
     UPDATE User
-    SET skillpoints = skillpoints + 5
+    SET skillpoints = skillpoints + ?
     WHERE user_id = ?
   `;
 
-  const VALUES = [data.user_id];
+  const VALUES = [data.skillpoints, data.user_id];
 
   pool.query(SQLSTATEMENT, VALUES, callback);
 };

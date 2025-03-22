@@ -1,7 +1,7 @@
 require("dotenv").config(); //read .env file and set environment variables
 
 const mysql = require("mysql2");
-
+const fs = require("fs");
 const caCert = fs.readFileSync('/etc/secrets/ca.pem', 'utf8');
 
 const setting = {

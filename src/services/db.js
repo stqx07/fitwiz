@@ -2,6 +2,8 @@ require("dotenv").config(); //read .env file and set environment variables
 
 const mysql = require("mysql2");
 
+const caCert = fs.readFileSync('/etc/secrets/ca.pem', 'utf8');
+
 const setting = {
   connectionLimit: 10, //set limit to 10 connection
   host: process.env.DB_HOST, //get host from environment variable
@@ -11,8 +13,7 @@ const setting = {
   multipleStatements: true, //allow multiple sql statements
   dateStrings: true, //return date as string instead of Date object
   ssl: {
-    rejectUnauthorized: true,
-    ca: process.env.DB_CERT, // path to your CA cert from Aiven
+    ca: caCert
   },
 };
 

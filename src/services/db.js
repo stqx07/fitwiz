@@ -12,7 +12,7 @@ const setting = {
   dateStrings: true, //return date as string instead of Date object
   ssl: {
     rejectUnauthorized: true,
-    ca: require("fs").readFileSync("./ca.pem"), // path to your CA cert from Aiven
+    ca: process.env.DB_CERT, // path to your CA cert from Aiven
   },
 };
 

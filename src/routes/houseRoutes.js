@@ -4,7 +4,7 @@
 const express = require("express");
 const houseController = require("../controllers/houseController.js");
 const userController = require("../controllers/userController.js");
-const jwtMiddleware = require("../middlewares/jwtMiddleware");
+const jwtMiddleware = require("../middlewares/jwtMiddleware.js");
 
 // ##############################################################
 // CREATE ROUTER

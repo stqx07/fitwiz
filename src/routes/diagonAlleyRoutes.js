@@ -3,7 +3,7 @@
 // ##############################################################
 const express = require("express");
 const controller = require("../controllers/diagonAlleyController.js");
-const jwtMiddleware = require("../middlewares/jwtMiddleware");
+const jwtMiddleware = require("../middlewares/jwtMiddleware.js");
 
 // ##############################################################
 // CREATE ROUTER

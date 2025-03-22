@@ -11,10 +11,10 @@ const houseRoutes = require("./houseRoutes.js");
 const leaderboardRoutes = require("./leaderboardRoutes.js");
 const owlPostRoutes = require("./owlPostRoutes.js");
 const questRoutes = require("./questRoutes.js");
-const jwtMiddleware = require("../middlewares/jwtMiddleware");
-const bcryptMiddleware = require("../middlewares/bcryptMiddleware");
+const jwtMiddleware = require("../middlewares/jwtMiddleware.js");
+const bcryptMiddleware = require("../middlewares/bcryptMiddleware.js");
 const userController = require("../controllers/userController.js");
-const verifyController = require("../controllers/verifyController");
+const verifyController = require("../controllers/verifyController.js");
 
 // ##############################################################
 // CREATE ROUTER

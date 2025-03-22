@@ -2,10 +2,10 @@
 // REQUIRE MODULES
 // ##############################################################
 const express = require("express");
-const challengesController = require("../controllers/challengesController");
+const challengesController = require("../controllers/challengesController.js");
 const userController = require("../controllers/userController.js");
-const userCompletionController = require("../controllers/userCompletionController");
-const jwtMiddleware = require("../middlewares/jwtMiddleware");
+const userCompletionController = require("../controllers/userCompletionController.js");
+const jwtMiddleware = require("../middlewares/jwtMiddleware.js");
 
 // ##############################################################
 // CREATE ROUTER

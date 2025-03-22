@@ -2,7 +2,7 @@ require("dotenv").config(); //read .env file and set environment variables
 
 const mysql = require("mysql2");
 const fs = require("fs");
-const caCert = fs.readFileSync(__dirname + '/ca.pem', 'utf8');
+const caCert = fs.readFileSync("./ca.pem").toString()
 
 const setting = {
   connectionLimit: 10, //set limit to 10 connection
